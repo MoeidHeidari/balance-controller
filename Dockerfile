@@ -1,0 +1,45 @@
+FROM node:12.19.0-alpine3.9 AS development
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+ARG GROVER_VERSION=production
+ENV GROVER_VERSION=${GROVER_VERSION}
+
+ARG NODE_PORT=8085
+ENV NODE_PORT=${NODE_PORT}
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install glob rimraf
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+FROM node:12.19.0-alpine3.9 as production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+ARG GROVER_VERSION=production
+ENV GROVER_VERSION=${GROVER_VERSION}
+
+ARG NODE_PORT=8085
+ENV NODE_PORT=${NODE_PORT}
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]

@@ -1,0 +1,27 @@
+apiVersion: skaffold/v2beta13
+kind: Config
+build:
+  local:
+    useBuildkit: true
+  artifacts:
+  - image: grover:v1.0
+deploy:
+  helm:
+    releases:
+    - name: grover
+      chartPath: ./k8s
+      wait: false
+      useHelmSecrets: true
+      valuesFiles:
+      - ./k8s/values.yaml
+      - ./k8s/secrets.yaml
+      artifactOverrides:
+        image: grover:v1.0
+      imageStrategy:
+        helm: {}
+
+portForward:
+ - resourceType: service
+   resourceName: grover
+   port: 8085
+   localPort: 8085
