@@ -7,6 +7,7 @@ import { HttpResponse } from "../../domain/interfaces";
 import { HttpResponseService, LoggerService } from "../../domain/servicecs";
 import { AccountService } from "../../domain/servicecs/Account.service";
 import { CreateAccountRequestDTO, GetUserAccountRequestDTO, GetUserAccountResponseDTO } from "../dtos";
+import { DepositMoneyRequestDTO } from "../dtos/deposit-money-request.dto";
 import { ShowBalanceReponseDTO } from "../dtos/show-balance-response.dto";
 import { UpdateAccountRequestDTO } from "../dtos/update-account-request.dto";
 /**
@@ -159,7 +160,7 @@ export class AccountController {
                 throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
             }
             await validateOutputDTO(account, this.logger);
-            const balance={balance:account.balance}
+            const balance = { balance: account.balance }
             await validateOutputDTO(balance, this.logger);
             return this.httpResponseService.generate(HttpStatus.OK, balance);
         } catch (error) {
@@ -168,7 +169,68 @@ export class AccountController {
         }
     }
     //================================================================================================================
-    
+    /**
+     * This endpoint creates a new account for a given user
+     * @param body body of the request
+     * @returns return CreateAccountReponseDTO
+     */
+    @ApiOperation({ summary: 'Entry point for crteate account API' })
+    @ApiResponse({
+        status: 201,
+        description: 'Creates a new account',
+        type: String,
+    })
+    @Header('content-type', 'application/json')
+    @Post('deposit')
+    @Public()
+    async depositMoney(@Query() query: GetUserAccountRequestDTO, @Body() body: DepositMoneyRequestDTO): Promise<HttpResponse> {
+        try {
+            await validateDTO(query, this.httpResponseService);
+            await validateDTO(body, this.httpResponseService);
+            const account = await this.account_service.getAccount(query);
+            if (!account) {
+                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+            }
+            await validateOutputDTO(account, this.logger);
+            const response = await this.account_service.depositModeny(account.id, body);
+            await validateOutputDTO(response, this.logger);
+            return this.httpResponseService.generate(HttpStatus.OK, response);
+        } catch (error) {
+            processHttpError(error, this.logger);
+            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+        }
+    }
     //================================================================================================================
-
+    //================================================================================================================
+    /**
+     * This endpoint creates a new account for a given user
+     * @param body body of the request
+     * @returns return CreateAccountReponseDTO
+     */
+    @ApiOperation({ summary: 'Entry point for crteate account API' })
+    @ApiResponse({
+        status: 201,
+        description: 'Creates a new account',
+        type: String,
+    })
+    @Header('content-type', 'application/json')
+    @Post('widraw')
+    @Public()
+    async widraw(@Query() query: GetUserAccountRequestDTO, @Body() body: DepositMoneyRequestDTO): Promise<HttpResponse> {
+        try {
+            await validateDTO(query, this.httpResponseService);
+            await validateDTO(body, this.httpResponseService);
+            const account = await this.account_service.getAccount(query);
+            if (!account) {
+                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+            }
+            await validateOutputDTO(account, this.logger);
+            const response = await this.account_service.widrawMoney(account.id, body);
+            await validateOutputDTO(response, this.logger);
+            return this.httpResponseService.generate(HttpStatus.OK, response);
+        } catch (error) {
+            processHttpError(error, this.logger);
+            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+        }
+    }
 }

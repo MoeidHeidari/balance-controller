@@ -1,6 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Mutex } from "async-mutex";
+import { resolveAny } from "dns";
+import { resolve } from "path";
 import { Observable, of, take } from "rxjs";
 import { CreateAccountRequestDTO, GetUserAccountRequestDTO, GetUserAccountResponseDTO } from "../../application/dtos";
+import { DepositMoneyRequestDTO } from "../../application/dtos/deposit-money-request.dto";
 import { ShowBalanceReponseDTO } from "../../application/dtos/show-balance-response.dto";
 import { UpdateAccountRequestDTO } from "../../application/dtos/update-account-request.dto";
 import { AccountEntity } from "../entities";
@@ -17,6 +21,7 @@ export class AccountService {
      * @param account_repository account repository
      */
     constructor(private readonly account_repository: AccountRepository) { }
+    mutex = new Mutex()
     //====================================================================================================================================
     /**
      * Creates a new account
@@ -34,7 +39,7 @@ export class AccountService {
             is_active: false,
             created_at: new Date(),
             updated_at: new Date(),
-            balance:0.0,
+            balance: 0.0,
             id: ""
         }
         return new Promise(async (resolve) => {
@@ -43,9 +48,6 @@ export class AccountService {
                 resolve(response);
             })
         })
-
-
-
     }
     //====================================================================================================================================
     /**
@@ -53,7 +55,7 @@ export class AccountService {
      * @param id id of the user
      * @returns Promise<Observable<void>>
      */
-    async deleteAccount(query: GetUserAccountRequestDTO):Promise<void> {
+    async deleteAccount(query: GetUserAccountRequestDTO): Promise<void> {
         return new Promise(async (resolve) => {
             (await this.account_repository.delete(query.id));
             resolve();
@@ -96,5 +98,34 @@ export class AccountService {
         })
     }
     //====================================================================================================================================
-    
+    async depositModeny(id: string, amount: DepositMoneyRequestDTO) {
+        const release = await this.mutex.acquire()
+        try {
+            return new Promise(async (resolve) => {
+                (await this.account_repository.get(id)).pipe(take(1)).subscribe(async (data: any) => {
+                    data.balance += amount.amount;
+                    (await this.account_repository.update(data));
+                    resolve(data);
+                })
+            });
+        } finally {
+            release()
+        }
+    }
+    //====================================================================================================================================
+    async widrawMoney(id: string, amount: DepositMoneyRequestDTO) {
+        const release = await this.mutex.acquire()
+        try {
+            return new Promise(async (resolve) => {
+                (await this.account_repository.get(id)).pipe(take(1)).subscribe(async (data: any) => {
+                    data.balance -= amount.amount;
+                    (await this.account_repository.update(data));
+                    resolve(data);
+                })
+            });
+        } finally {
+            release()
+        }
+    }
+
 }

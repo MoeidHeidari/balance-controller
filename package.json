@@ -36,6 +36,7 @@
         "@types/morgan": "^1.9.2",
         "@willsoto/nestjs-prometheus": "^4.6.0",
         "ansi-styles": "^6.1.0",
+        "async-mutex": "^0.3.2",
         "cache-manager": "^3.6.1",
         "chokidar": "^3.5.3",
         "class-transformer": "^0.3.1",
