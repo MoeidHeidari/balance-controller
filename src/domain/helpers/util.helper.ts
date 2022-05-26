@@ -117,3 +117,20 @@ export async function asyncFilter(arr: any, predicate: any) {
   const results = await Promise.all(arr.map(predicate));
   return arr.filter((_v: any, index: any) => results[index]);
 }
+//===================================================================================================
+/**
+ * generates random string as token
+ * @param lenght lenght of the random text
+ * @returns string
+ */
+export async function generateToken(length:number):Promise<string>{
+  var s = '';
+  var randomchar = function() {
+    var n = Math.floor(Math.random() * 62);
+    if (n < 10) return n; //1-10
+    if (n < 36) return String.fromCharCode(n + 55); //A-Z
+    return String.fromCharCode(n + 61); //a-z
+  }
+  while (s.length < length) s += randomchar();
+  return s;
+}
