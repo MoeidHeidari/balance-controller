@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsDefined, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 import { Currencies } from "../../domain/enums/currencies.enum";
 
@@ -13,6 +14,9 @@ export class CreateAccountRequestDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @ApiProperty({
+        description: 'name of the user',
+      })
     name: string;
     /**
     * familty of the user
@@ -21,6 +25,9 @@ export class CreateAccountRequestDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @ApiProperty({
+        description: 'family of the user',
+      })
     family: string;
     /**
     * username of the user
@@ -29,6 +36,9 @@ export class CreateAccountRequestDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @ApiProperty({
+        description: 'username of the user',
+      })
     username: string;
 
     /**
@@ -37,6 +47,9 @@ export class CreateAccountRequestDTO {
     @IsDefined()
     @IsNotEmpty()
     @IsEnum(Currencies, { each: true })
+    @ApiProperty({
+        description: 'currency of the user account',
+      })
     currency: Currencies;
 
     /**

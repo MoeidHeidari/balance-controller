@@ -10,14 +10,14 @@ import { GetUserAccountRequestDTO } from "../dtos";
 import { DepositMoneyRequestDTO } from "../dtos/deposit-money-request.dto";
 import { ShowBalanceReponseDTO } from "../dtos/show-balance-response.dto";
 /**
- * Account controller class
+ * Balance controller class
  */
 @Controller('api/v1/balance')
 export class BalanceController {
 
 
     /**
-     * Constructs account controller class
+     * Constructs balance controller class
      * @param account_service Account service
      */
     constructor(
@@ -26,9 +26,10 @@ export class BalanceController {
         private readonly logger: LoggerService) { }
     //================================================================================================================
     /**
-     * This endpoint creates a new account for a given user
-     * @param body body of the request
-     * @returns return CreateAccountReponseDTO
+     * This endpoint deposits money to user account
+     * @param query query of the API
+     * @param body body of the API
+     * @returns lastest changed acount info
      */
     @ApiOperation({ summary: 'Entry point for crteate account API' })
     @ApiResponse({
@@ -61,9 +62,10 @@ export class BalanceController {
     }
     //================================================================================================================
     /**
-     * This endpoint creates a new account for a given user
-     * @param body body of the request
-     * @returns return CreateAccountReponseDTO
+     * This endpoint wirdraws money from user account
+     * @param query query of the API
+     * @param body body of the API
+     * @returns lastest changed acount info
      */
     @ApiOperation({ summary: 'Entry point for crteate account API' })
     @ApiResponse({
@@ -98,10 +100,11 @@ export class BalanceController {
     }
     //================================================================================================================
     /**
-    * Show current balance of the user
-    * @param body GetUserAccountResponseDTO
-    * @returns HTTPReponse
-    */
+     * This endpoint show money balance from user account
+     * @param query query of the API
+     * @param body body of the API
+     * @returns lastest changed acount info
+     */
     @ApiOperation({ summary: 'Returns back the balance of the account' })
     @ApiResponse({
         status: 200,

@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsDefined,IsNotEmpty, IsString } from "class-validator";
 
 /**
@@ -11,6 +12,9 @@ export class GetUserAccountRequestDTO {
      @IsDefined()
      @IsString()
      @IsNotEmpty()
+     @ApiProperty({
+        description: 'id of the user',
+      })
      id: string;
 
 

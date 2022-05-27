@@ -37,7 +37,7 @@ export class AccountService {
         }
         return new Promise(async (resolve) => {
             (await this.account_repository.create(account)).pipe(take(1)).subscribe(async (data: any) => {
-                const response = { acccount_token: data.token, id: data.id }
+                const response = { id: data.id }
                 resolve(response);
             })
         })

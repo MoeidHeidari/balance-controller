@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsDefined, IsNotEmpty, IsString } from "class-validator";
 /**
  * List of allowed properties in this DTO
@@ -14,6 +15,9 @@ export class CreateAccountReposnseDto {
     @IsDefined()
     @IsString()
     @IsNotEmpty()
+    @ApiProperty({
+        description: 'id of the user',
+      })
     id: string;
 
     /**

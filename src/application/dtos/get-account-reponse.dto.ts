@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsDate, IsDefined, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 import { Currencies } from "../../domain/enums/currencies.enum";
 
@@ -12,6 +13,9 @@ export class GetUserAccountResponseDTO {
     @IsDefined()
     @IsString()
     @IsNotEmpty()
+    @ApiProperty({
+        description: 'id of the user',
+      })
     id: string;
 
     /**
@@ -21,6 +25,9 @@ export class GetUserAccountResponseDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @ApiProperty({
+        description: 'name of the user',
+      })
     name: string;
     /**
     * familty of the user
@@ -29,7 +36,10 @@ export class GetUserAccountResponseDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
-    familty: string;
+    @ApiProperty({
+        description: 'family of the user',
+      })
+    family: string;
     /**
     * username of the user
     */
@@ -37,6 +47,9 @@ export class GetUserAccountResponseDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @ApiProperty({
+        description: 'username of the user',
+      })
     username: string;
     /**
     * default currency of the account
@@ -44,6 +57,9 @@ export class GetUserAccountResponseDTO {
     @IsDefined()
     @IsNotEmpty()
     @IsEnum(Currencies, { each: true })
+    @ApiProperty({
+        description: 'currency of the user acount balance',
+      })
     currency: Currencies;
 
 
@@ -53,6 +69,9 @@ export class GetUserAccountResponseDTO {
     @IsDefined()
     @IsDate()
     @IsNotEmpty()
+    @ApiProperty({
+        description: 'acount created at',
+      })
     created_at: Date;
 
     /**
@@ -61,6 +80,9 @@ export class GetUserAccountResponseDTO {
     @IsDefined()
     @IsDate()
     @IsNotEmpty()
+    @ApiProperty({
+        description: 'account updated at',
+      })
     updated_at: Date;
 
     /**
@@ -69,6 +91,9 @@ export class GetUserAccountResponseDTO {
     @IsDefined()
     @IsNumber()
     @IsNotEmpty()
+    @ApiProperty({
+        description: 'balance of the user acount',
+      })
     balance: number;
 
 

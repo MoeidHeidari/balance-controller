@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "b94f8f8b-9178-4966-9c8a-3afd752acda6",
+		"name": "Grover",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "CreateNewAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"moeid\",\n    \"family\": \"heidari\",\n    \"username\":\"moeidheidari\",\n    \"currency\":\"usd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/v1/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAccount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/account?id=04985373-dcbe-4a61-86c7-19796b48e14a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"account"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "04985373-dcbe-4a61-86c7-19796b48e14a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAccount",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/account?id=bc647e5c-3f9f-416a-b38c-90290c59f835",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"account"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "bc647e5c-3f9f-416a-b38c-90290c59f835"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAccount",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"family\": \"hama\",\n    \"name\":\"jamal\",\n    \"id\":\"4086eefe-8464-4850-9b8c-0ae454baf695\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/v1/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "balance",
+			"item": [
+				{
+					"name": "deposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\":23.098\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/v1/balance/deposit?id=c911b44e-9acf-46fe-8fdc-e94c9c71ee9c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"balance",
+								"deposit"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "c911b44e-9acf-46fe-8fdc-e94c9c71ee9c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "widraw",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 0.005\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/v1/balance/widraw?id=c911b44e-9acf-46fe-8fdc-e94c9c71ee9c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"balance",
+								"widraw"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "c911b44e-9acf-46fe-8fdc-e94c9c71ee9c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "showBalance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/balance?id=c911b44e-9acf-46fe-8fdc-e94c9c71ee9c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "c911b44e-9acf-46fe-8fdc-e94c9c71ee9c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

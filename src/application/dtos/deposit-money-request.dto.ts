@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsDefined, IsNotEmpty, IsNumber } from "class-validator";
 
 /**
@@ -11,6 +12,9 @@ export class DepositMoneyRequestDTO {
      @IsDefined()
      @IsNumber()
      @IsNotEmpty()
+     @ApiProperty({
+        description: 'amount of the user account balance',
+      })
      amount: number;
 
 
