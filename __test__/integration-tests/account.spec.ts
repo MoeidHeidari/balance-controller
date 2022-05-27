@@ -50,40 +50,40 @@ describe("acount service tests", () => {
     it('should be defined', () => {
       expect(accountService).toBeDefined();
     });
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((CREATE_FAKE_ACCOUNT_TEST_CASE_1.expectation.should), async () => {
       const result = await accountService.createNewAccount(CREATE_FAKE_ACCOUNT_TEST_CASE_1.date);
       const data = new CreateAccountReposnseDto(result);
       expect(data.id).toBeDefined();
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((GET_FAKE_ACCOUNT_TEST_CASE_1.expectation.should), async () => {
       const result = await accountService.createNewAccount(GET_FAKE_ACCOUNT_TEST_CASE_1.account);
       const data = new CreateAccountReposnseDto(result);
       const account = await accountService.getAccount(data);
       expect(account.id).toBeDefined();
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((DELETE_FAKE_ACCOUNT_TEST_CASE_1.expectation.should), async () => {
       const result = await accountService.deleteAccount(DELETE_FAKE_ACCOUNT_TEST_CASE_1.delete);
       const data = new CreateAccountReposnseDto(result);
       const account = await accountService.getAccount(data);
       expect(account).not.toBeDefined();
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((DELETE_FAKE_ACCOUNT_TEST_CASE_1.expectation.should), async () => {
       const result = await accountService.deleteAccount(DELETE_FAKE_ACCOUNT_TEST_CASE_1.delete);
       const data = new CreateAccountReposnseDto(result);
       const account = await accountService.getAccount(data);
       expect(account).not.toBeDefined();
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((DELETE_FAKE_ACCOUNT_TEST_CASE_2.expectation.should), async () => {
       const result = await accountService.deleteAccount(DELETE_FAKE_ACCOUNT_TEST_CASE_2.delete);
       const data = new CreateAccountReposnseDto(result);
       expect(data).toMatchObject({});
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((UPDATE_FAKE_ACCOUNT_TEST_CASE_1.expectation.should), async () => {
       const result = await accountService.createNewAccount(UPDATE_FAKE_ACCOUNT_TEST_CASE_1.account);
       const data = new CreateAccountReposnseDto(result);
@@ -93,7 +93,7 @@ describe("acount service tests", () => {
       const updatedResult=await accountService.updateAccount(accountupdate);
       expect(updatedResult.name).toEqual(UPDATE_FAKE_ACCOUNT_TEST_CASE_1.update.name);
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((UPDATE_FAKE_ACCOUNT_TEST_CASE_2.expectation.should), async () => {
       const result = await accountService.createNewAccount(UPDATE_FAKE_ACCOUNT_TEST_CASE_2.account);
       const data = new CreateAccountReposnseDto(result);
@@ -103,7 +103,7 @@ describe("acount service tests", () => {
       const updatedResult=await accountService.updateAccount(accountupdate);
       expect(updatedResult).not.toBeDefined();
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((DEPOSIT_FAKE_MONEY_TEST_CASE_1.expectation.should), async () => {
       const result = await accountService.createNewAccount(DEPOSIT_FAKE_MONEY_TEST_CASE_1.account);
       const account = new CreateAccountReposnseDto(result);
@@ -114,7 +114,7 @@ describe("acount service tests", () => {
       const depositResult=new GetUserAccountResponseDTO(deposit);
       expect(depositResult.balance).toEqual(DEPOSIT_FAKE_MONEY_TEST_CASE_1.body.amount);
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((DEPOSIT_WIDRAW_FAKE_MONEY_TEST_CASE_2.expectation.should), async () => {
       const result = await accountService.createNewAccount(DEPOSIT_WIDRAW_FAKE_MONEY_TEST_CASE_2.account);
       const account = new CreateAccountReposnseDto(result);
@@ -131,7 +131,7 @@ describe("acount service tests", () => {
       const widrawResult=new GetUserAccountResponseDTO(widraw);
       expect(widrawResult.balance).toEqual(DEPOSIT_WIDRAW_FAKE_MONEY_TEST_CASE_2.final.amount);
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((DEPOSIT_WIDRAW_FAKE_MONEY_TEST_CASE_3.expectation.should), async () => {
       //............make fresh account...............
       const result = await accountService.createNewAccount(DEPOSIT_WIDRAW_FAKE_MONEY_TEST_CASE_3.account);
@@ -179,7 +179,7 @@ describe("acount service tests", () => {
       const widraw2Result=new GetUserAccountResponseDTO(widraw2);
       expect(widraw2Result.balance).toEqual(DEPOSIT_WIDRAW_FAKE_MONEY_TEST_CASE_3.final.amount);
     })
-    //-----------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     it((WIDRAW_FAKE_MONEY_TEST_CASE_1.expectation.should), async () => {
       //............make fresh account...............
       const result = await accountService.createNewAccount(WIDRAW_FAKE_MONEY_TEST_CASE_1.account);
@@ -198,7 +198,7 @@ describe("acount service tests", () => {
       
     })
   });
-
+  //=================================================================================================================================
   afterAll(() => {
     try {
       process.nextTick(() => { });
