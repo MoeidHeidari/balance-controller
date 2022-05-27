@@ -1,6 +1,6 @@
 
 import faker, { datatype } from "faker";
-import { Currencies } from "../../src/domain/enums/currencies.enum"
+import { Currencies } from "../../../src/domain/enums/currencies.enum"
 ////////////////////////////////////////e2e test cases////////////////////////////////////////////////////////////
 function getRandomCurrency<T>(anEnum: T): T[keyof T] {
     const enumValues = Object.keys(anEnum)

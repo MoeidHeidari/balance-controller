@@ -18,7 +18,7 @@ import {
   UPDATE_FAKE_ACCOUNT_TEST_CASE_2,
   WIDRAW_FAKE_MONEY_TEST_CASE_1
 }
-  from '../factories/account.factory';
+  from './facories/account-balance.factory';
 import { CreateAccountReposnseDto, GetUserAccountRequestDTO, GetUserAccountResponseDTO} from '../../src/application/dtos';
 import { UpdateAccountRequestDTO } from '../../src/application/dtos/update-account-request.dto';
 import { DepositMoneyRequestDTO } from '../../src/application/dtos/deposit-money-request.dto';

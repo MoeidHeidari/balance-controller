@@ -4,11 +4,11 @@ build:
   local:
     useBuildkit: true
   artifacts:
-  - image: grover:v1.0
+  - image: grover
 deploy:
   helm:
     releases:
-    - name: grover
+    - name: app
       chartPath: ./k8s
       wait: false
       useHelmSecrets: true
@@ -16,12 +16,12 @@ deploy:
       - ./k8s/values.yaml
       - ./k8s/secrets.yaml
       artifactOverrides:
-        image: grover:v1.0
+        image: grover
       imageStrategy:
         helm: {}
 
 portForward:
  - resourceType: service
-   resourceName: grover
+   resourceName: app
    port: 8085
-   localPort: 8085
+   localPort: 8086

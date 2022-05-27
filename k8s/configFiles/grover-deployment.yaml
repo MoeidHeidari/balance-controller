@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: grover
+  name: grover
+  namespace: grover
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: grover
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: grover
+    spec:
+      containers:
+      - env:
+        - name: PARLOA_LAT
+          valueFrom:
+            configMapKeyRef:
+              name: grover-config
+              key: PARLOA_LAT
+        - name: PARLOA_LONG
+          valueFrom:
+            configMapKeyRef:
+              name: grover-config
+              key: PARLOA_LONG
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: grover-config
+              key: NODE_ENV
+        - name: NODE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: grover-config
+              key: NODE_PORT
+        image: registry.gitlab.com/moeidtopcoder/grover:latest
+        imagePullPolicy: "Always"
+        name: grover
+        ports:
+        - containerPort: 8077
+        resources: 
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}
