@@ -77,60 +77,8 @@ export async function validateOutputDTO(dto: any, logger: any): Promise<any> {
 
   return dto;
 }
-
-//==================================================================================================
-/**
- * Paginates the retrived list of array elements
- * @param array Array to perform pagination on
- * @param page_size number of the page
- * @param page_number limit number of the elements
- * @returns a list of elements
- */
-export async function paginate(array: any, page_size: number, page_number: number) {
-  // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
-  return array.slice((page_number - 1) * page_size, page_number * page_size);
-}
 //===================================================================================================
-/**
- * Calculates the distance between two given locations
- * @param lat1 latitude_one
- * @param lon1 longitude_one
- * @param lat2 latitude_two
- * @param lon2 longitude_two
- * @returns float number
- */
-export async function distance(lat1: number, lon1: number, lat2: number, lon2: number) {
-  const p = 0.017453292519943295;
-  const c = Math.cos;
-  const a = 0.5 - c((lat2 - lat1) * p) / 2 + (c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p))) / 2;
-
-  return 12742 * Math.asin(Math.sqrt(a));
-}
-//===================================================================================================
-/**
- * Asynchronous filtering on an array
- * @param arr Provides async filtering
- * @param predicate predicate parameter
- * @returns list of elements
- */
-export async function asyncFilter(arr: any, predicate: any) {
-  const results = await Promise.all(arr.map(predicate));
-  return arr.filter((_v: any, index: any) => results[index]);
-}
-//===================================================================================================
-/**
- * generates random string as token
- * @param lenght lenght of the random text
- * @returns string
- */
-export async function generateToken(length:number):Promise<string>{
-  var s = '';
-  var randomchar = function() {
-    var n = Math.floor(Math.random() * 62);
-    if (n < 10) return n; //1-10
-    if (n < 36) return String.fromCharCode(n + 55); //A-Z
-    return String.fromCharCode(n + 61); //a-z
-  }
-  while (s.length < length) s += randomchar();
-  return s;
+export function naiveRound(num:number, decimalPlaces = 2) {
+  var p = Math.pow(10, decimalPlaces);
+  return Math.round(num * p) / p;
 }

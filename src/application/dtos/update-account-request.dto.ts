@@ -1,11 +1,10 @@
 import { IsDefined, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
-import { AccountType } from "../../domain/enums/account-types.enum";
 import { Currencies } from "../../domain/enums/currencies.enum";
 
 /**
  * List of allowed properties in this DTO
  */
-const allowedProperties = ['id','account_type', 'name', 'familty', 'username', 'email', 'currency'];
+const allowedProperties = ['id', 'name', 'familty', 'username', 'email', 'currency'];
 export class UpdateAccountRequestDTO {
      /**
     * id of the user
@@ -16,14 +15,9 @@ export class UpdateAccountRequestDTO {
      id: string;
 
     /**
-    * type of the account
-    */
-    @IsEnum(AccountType, { each: true })
-    account_type: AccountType
-    /**
     * name of the user
     */
-    @IsDefined()
+    @IsOptional()
     @IsString()
     @MaxLength(30)
     @MinLength(3)
@@ -31,29 +25,16 @@ export class UpdateAccountRequestDTO {
     /**
     * familty of the user
     */
-    @IsDefined()
+    @IsOptional()
     @IsString()
     @MaxLength(30)
     @MinLength(3)
-    familty: string;
-    /**
-    * username of the user
-    */
-    @IsDefined()
-    @IsString()
-    @MaxLength(30)
-    @MinLength(3)
-    username: string;
-    /**
-    * email of the user
-    */
-    @IsDefined()
-    @IsEmail()
-    email: string;
+    family: string;
+
     /**
     * default currency of the account
     */
-    @IsDefined()
+    @IsOptional()
     @IsNotEmpty()
     @IsEnum(Currencies, { each: true })
     currency: Currencies;

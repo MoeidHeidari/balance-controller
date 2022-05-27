@@ -7,13 +7,6 @@ const allowedProperties = ['acccount_token','id'];
  * CreateAccountReposnseDto
  */
 export class CreateAccountReposnseDto {
-    /**
-    * Account token
-    */
-    @IsDefined()
-    @IsNotEmpty()
-    @IsString()
-    acccount_token: string;
 
     /**
     * id of the user

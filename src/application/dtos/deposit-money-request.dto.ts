@@ -1,6 +1,4 @@
-import { IsBoolean, IsDate, IsDefined, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
-import { AccountType } from "../../domain/enums/account-types.enum";
-import { Currencies } from "../../domain/enums/currencies.enum";
+import { IsDefined, IsNotEmpty, IsNumber } from "class-validator";
 
 /**
  * List of allowed properties in this DTO

@@ -1,14 +1,11 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { Mutex } from "async-mutex";
-import { resolveAny } from "dns";
-import { resolve } from "path";
-import { Observable, of, take } from "rxjs";
+import { take } from "rxjs";
 import { CreateAccountRequestDTO, GetUserAccountRequestDTO, GetUserAccountResponseDTO } from "../../application/dtos";
 import { DepositMoneyRequestDTO } from "../../application/dtos/deposit-money-request.dto";
-import { ShowBalanceReponseDTO } from "../../application/dtos/show-balance-response.dto";
 import { UpdateAccountRequestDTO } from "../../application/dtos/update-account-request.dto";
 import { AccountEntity } from "../entities";
-import { generateToken } from "../helpers";
+import { naiveRound } from "../helpers";
 import { AccountRepository } from "../repositories/account.repository";
 
 /**
@@ -30,13 +27,9 @@ export class AccountService {
      */
     async createNewAccount(record: CreateAccountRequestDTO) {
         const account: AccountEntity = {
-            account_type: record.account_type,
             username: record.username,
-            first_name: record.name,
-            last_name: record.familty,
-            email: record.email,
-            token: await generateToken(20),
-            is_active: false,
+            name: record.name,
+            family: record.family,
             created_at: new Date(),
             updated_at: new Date(),
             balance: 0.0,
@@ -81,18 +74,17 @@ export class AccountService {
      * @returns Promise<Observable<void>>
      */
     async updateAccount(record: UpdateAccountRequestDTO): Promise<GetUserAccountResponseDTO> {
-        const account: AccountEntity = {
-            account_type: record.account_type,
-            username: record?.username,
-            first_name: record?.name,
-            last_name: record?.familty,
-            email: record?.email,
-            updated_at: new Date(),
-            id: record.id,
-        }
         return new Promise(async (resolve) => {
-            (await this.account_repository.update(account));
-            (await this.account_repository.get(account.id)).pipe(take(1)).subscribe((data: any) => {
+            
+            (await this.account_repository.get(record.id)).pipe(take(1)).subscribe(async (data: any) => {
+                if(data)
+                {
+                    if(record.name) data.name=record.name;
+                    if(record.family) data.family=record.family;
+                    if(record.currency) data.currencies=record.currency;
+                    (await this.account_repository.update(data));
+                }
+                
                 resolve(data);
             })
         })
@@ -103,7 +95,8 @@ export class AccountService {
         try {
             return new Promise(async (resolve) => {
                 (await this.account_repository.get(id)).pipe(take(1)).subscribe(async (data: any) => {
-                    data.balance += amount.amount;
+                    (await data).balance += amount.amount;
+                    (await data).balance=naiveRound((await data).balance,3);
                     (await this.account_repository.update(data));
                     resolve(data);
                 })
@@ -116,12 +109,23 @@ export class AccountService {
     async widrawMoney(id: string, amount: DepositMoneyRequestDTO) {
         const release = await this.mutex.acquire()
         try {
-            return new Promise(async (resolve) => {
-                (await this.account_repository.get(id)).pipe(take(1)).subscribe(async (data: any) => {
-                    data.balance -= amount.amount;
-                    (await this.account_repository.update(data));
-                    resolve(data);
-                })
+            return new Promise(async (resolve,rejects) => {
+                try {
+                    (await this.account_repository.get(id)).pipe(take(1)).subscribe(async (data: any) => {
+                        if(data.balance<amount.amount){
+                            rejects(`Insufficient Funds.current balance is: ${data.balance}`)
+                        }else{
+                            (await data).balance -= amount.amount;
+                            (await data).balance=naiveRound((await data).balance,3);
+                            (await this.account_repository.update(data));
+                            resolve(data);
+                        }
+                        
+                    })
+                } catch (error) {
+                    rejects(error)
+                }
+                
             });
         } finally {
             release()
