@@ -1,0 +1,263 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Grover documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">Grover documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="grover-monetary-transaction">Grover monetary transaction</h1>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ol>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#Code-architecture">Code architecture</a></li>
+<li><a href="#Service-build-information">Build instruction</a></li>
+<li><a href="#Test">Test</a></li>
+<li><a href="#Instructions-for-deploying-the-software">Deployment</a></li>
+<li><a href="#Monitoring-and-alerting">Monitoring and alerting</a></li>
+<li><a href="#OpenApi">OpenApi</a></li>
+<li><a href="#Documentation">Documentation</a></li>
+<li><a href="#Contribution">Contribution</a></li>
+</ol>
+<h2 id="overview">Overview</h2>
+<p>Grover monetary transaction provides a bunch of REST APIs  to simulate a monetary transaction for the given user. It provides following list of APIs</p>
+<hr>
+<h4 id="provided-apis">Provided APIs</h4>
+<ul>
+<li><p>Create new account (<code>/api/v1/account</code>)<em><strong>[POST][GET][PUT][DELETE]</strong></em></p>
+</li>
+<li><p>Deposit money (<code>/api/v1/balance/deposit</code>)<em><strong>[POST]</strong></em></p>
+</li>
+<li><p>Widraw money (<code>/api/v1/balance/widraw</code>)<em><strong>[POST]</strong></em></p>
+</li>
+<li><p>Show balance(<code>/api/v1/balance</code>)<em><strong>[GET]</strong></em></p>
+</li>
+</ul>
+<hr>
+<h2 id="code-architecture">Code architecture</h2>
+<p>Onion Architecture</p>
+<div><pre class="line-numbers"><code class="language-bash">src
+├── application
+│   ├── controllers
+│   └── dtos
+├── domain
+│   ├── decorators
+│   ├── entities
+│   ├── enums
+│   │   └── httpResponse
+│   ├── exceptions
+│   ├── guards
+│   ├── helpers
+│   ├── interceptors
+│   ├── interfaces
+│   ├── modules
+│   │   └── common
+│   ├── pipes
+│   ├── repositories
+│   ├── seeders
+│   └── servicecs
+│       └── common
+└── infrastructure
+    ├── config
+    └── modules
+        └── common</code></pre></div><p>Here we have three very main layers </p>
+<ul>
+<li><p>Application</p>
+<p>in this layer we define the actual behavior of our application, thus being responsible for performing interactions among units of the domain layer.</p>
+</li>
+<li><p>Domain</p>
+<p>this layer represents the business and behavior objects. we define units which play the role of entities and business rules and have a direct relationship to our domain</p>
+</li>
+<li><p>Infrastructure</p>
+<p>this layer the boundary to whatever is external to our application: the database, email services, queue engines, etc.</p>
+</li>
+</ul>
+<hr>
+<h2 id="service-build-information">Service build information</h2>
+<p>There are different stages of building the application for this service. Based on the environment you want to deploy we have different ways to build the application. following information may help with building the service.</p>
+<h3 id="source-code">source code</h3>
+<div><pre class="line-numbers"><code class="language-bash">tar -xvf monetary-transaction.tar
+cd monetary-transaction</code></pre></div><h4 id="npm">NPM</h4>
+<div><pre class="line-numbers"><code class="language-bash">npm install
+npm run build</code></pre></div><h4 id="docker">Docker</h4>
+<div><pre class="line-numbers"><code class="language-bash">docker build . -t grover:latest</code></pre></div><h4 id="docker-compose">Docker-compose</h4>
+<div><pre class="line-numbers"><code class="language-bash">docker-compose build</code></pre></div><h4 id="startsh-script">Start.sh script</h4>
+<div><pre class="line-numbers"><code class="language-bash">sudo bash scripts/start.sh -h
+Usage: start.sh [-h] [-build_docker] [-build_and_run_docker] [-stop_docker] [-run_app] [-run_test] [-run_lint] [-deploy_on_kubernetes] 
+
+
+This script helps you to runn the application in different forms. below you can get the full list of available options.
+
+Available options:
+
+-h, --help              Print this help and exit
+-build_docker           Build the docker image called &quot;grover:latest&quot;
+-build_and_run_docker   Build the docker image and run on local machine
+-stop_docker            Stop running docker container named &quot;grover&quot;
+-run_app                Run application with npm in usual way for development
+-run_test               Run npm test
+-run_lint               Run npm lint
+-generate_doc           Generate the code documentation
+-deploy_on_kubernetes   you need to have a kubernetes cluster already up and running on the machine.</code></pre></div><h2 id="tests">Tests</h2>
+<div><pre class="line-numbers"><code class="language-bash">npm test</code></pre></div><h2 id="instructions-for-deploying-the-software">Instructions for deploying the software</h2>
+<h4 id="helm">Helm</h4>
+<p>with the following instruction you can make the helmchart ready for deployment. Following instruction make a app-0.1.0.tgz helm package. then we can install or push it to a helm repository.</p>
+<div><pre class="line-numbers"><code class="language-bash">cd k8s
+helm package .</code></pre></div><p>with the following instruction you can install the helm chart on an up and running kubernetes cluster.</p>
+<div><pre class="line-numbers"><code class="language-bash">helm install grover-app app-0.1.0.tgz --set service.type=NodePort</code></pre></div><h4 id="kubernetes">Kubernetes</h4>
+<p>Alternativelly you can deploy the application on an up an running kubernetes cluster using provided config files.</p>
+<div><pre class="line-numbers"><code class="language-bash">cd k8s/configFiles
+kubectl apply -f grover-namespace.yaml, grover-configmap.yaml, grover-deployment.yaml, grover-service.yaml</code></pre></div><p>it should give you following output</p>
+<div><pre class="line-numbers"><code class="language-bash">namespace/grover created
+configmap/grover-config created
+deployment.apps/grover created
+service/grover created</code></pre></div><h4 id="skaffold">Skaffold</h4>
+<p>Skaffold handles the workflow for building, pushing and deploying the application</p>
+<div><pre class="line-numbers"><code class="language-bash">make</code></pre></div><div><pre class="line-numbers"><code class="language-bash">skaffold dev --auto-build --auto-deploy --tail --cleanup
+Listing files to watch...
+ - grover
+Generating tags...
+ - grover -&gt; grover:6b79957-dirty
+Checking cache...
+ - grover: Not found. Building
+Starting build...
+Found [minikube] context, using local docker daemon.
+Building [grover]...
+Target platforms: [linux/amd64]
+[+] Building 14.0s (8/14)                                                                                                                                                                                          
+ =&gt; [internal] load build definition from Dockerfile                                                                                                                                                          0.0s
+ =&gt; =&gt; transferring dockerfile: 594B                                                                                                                                                                          0.0s
+ =&gt; [internal] load .dockerignore                                                                                                                                                                             0.0s
+ =&gt; =&gt; transferring context: 35B                                                                                                                                                                              0.0s
+ =&gt; [internal] load metadata for docker.io/library/node:12.19.0-alpine3.9                                                                                                                                     1.3s
+ =&gt; [internal] load build context                                                                                                                                                                             0.0s
+ =&gt; =&gt; transferring context: 5.77kB                                                                                                                                                                           0.0s
+ =&gt; [development 1/7] FROM docker.io/library/node:12.19.0-alpine3.9&#64;sha256:63777fafdf8d55f53dc31910d0e086a7bd12c45f5bb09be63d720f5fb37a0635                                                                   0.0s
+ =&gt; CACHED [development 2/7] WORKDIR /usr/src/app                                                                                                                                                             0.0s
+ =&gt; CACHED [development 3/7] COPY package*.json ./                                                                                                                                                            0.0s
+ =&gt; [development 4/7] RUN npm install glob rimraf                                                                                                                                                            10.5s
+ =&gt; [production 4/6] RUN npm install</code></pre></div><h2 id="monitoring-and-alerting">Monitoring and alerting</h2>
+<h4 id="health-check">Health check</h4>
+<p>by calling the following endpoint you can make sure that the application is running and listening to your desired port</p>
+<p><code>http://localhost:{port_number}/health</code></p>
+<p>most probably you will get a result back as follow</p>
+<blockquote>
+<p><strong>Example</strong>
+{&quot;status&quot;:&quot;ok&quot;,&quot;info&quot;:{&quot;alive&quot;:{&quot;status&quot;:&quot;up&quot;}},&quot;error&quot;:{},&quot;details&quot;:{&quot;alive&quot;:{&quot;status&quot;:&quot;up&quot;}}}</p>
+</blockquote>
+<p>mertics</p>
+<p>to get the default metrics of the application you can use the following endpoint</p>
+<p><code>http://localhost:{port_number}/metrics</code></p>
+<h2 id="openapi">OpenApi</h2>
+<p>by calling the following endpoint you can see the Swagger OpenApi documentation and explore all the available apis and  schemas.</p>
+<p><code>http://localhost:{port_number}/api</code></p>
+<h2 id="documentation">Documentation</h2>
+<p>By running following comman you  can generate the full code documentation (Compodoc) and get access to it through port <code>7000</code></p>
+<div><pre class="line-numbers"><code class="language-bash">npm run doc</code></pre></div><p><a href="http://localhost:7000">http://localhost:7000</a></p>
+<h2 id="contribution">Contribution</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
