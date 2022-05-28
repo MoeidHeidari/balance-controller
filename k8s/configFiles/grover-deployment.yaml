@@ -18,16 +18,6 @@ spec:
     spec:
       containers:
       - env:
-        - name: PARLOA_LAT
-          valueFrom:
-            configMapKeyRef:
-              name: grover-config
-              key: PARLOA_LAT
-        - name: PARLOA_LONG
-          valueFrom:
-            configMapKeyRef:
-              name: grover-config
-              key: PARLOA_LONG
         - name: NODE_ENV
           valueFrom:
             configMapKeyRef:
