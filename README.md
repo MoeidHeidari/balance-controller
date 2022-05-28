@@ -16,7 +16,7 @@
 6. [Monitoring and alerting](#monitoring-and-alerting)
 7. [OpenApi](#ppenApi)
 8. [Documentation](#documentation)
-9. [ToDo list](#to-do-list)
+9. [ToDo list](#todo-list)
 
 ## Overview
 
@@ -268,4 +268,3 @@ http://localhost:7000
 
 - [ ]  add counter metric to the apis
 
-- [ ] 
