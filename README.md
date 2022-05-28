@@ -3,8 +3,14 @@
 # Table of Contents
 
 1. [Overview](#Overview)
+    1.1[APIs](#Provided-APIs)
 2. [Code architecture](#Code-architecture)
 3. [Build instruction](#Service-build-information)
+    3.1[source code](#source-code)
+    3.2[NPM](#NPM)
+    3.3[Docker](#Docker)
+    3.4[Docker-compose](#Docker-compose)
+    3.5[Start.sh script](#Start.sh-script)
 4. [Test](#Test)
 5. [Deployment](#Instructions-for-deploying-the-software)
 6. [Monitoring and alerting](#Monitoring-and-alerting)
@@ -61,6 +67,8 @@ src
     └── modules
         └── common
 ```
+
+
 
 Here we have three very main layers 
 
@@ -134,6 +142,15 @@ Available options:
 
 ```bash
 npm test
+ PASS  __test__/e2e-tests/e2e.spec.ts (6.367 s)
+ PASS  __test__/account-balance-tests/account.spec.ts
+ PASS  __test__/account-balance-tests/health.comtroller.spec.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        7.665 s
+Ran all test suites.
 ```
 
 ## Instructions for deploying the software
@@ -241,6 +258,8 @@ npm run doc
 
 http://localhost:7000
 
-## Contribution
+## ToDo list
+
+
 
 
