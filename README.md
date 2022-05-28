@@ -100,6 +100,7 @@ cd monetary-transaction
 ```bash
 npm install
 npm run build
+npm start
 ```
 
 #### Docker

@@ -35,15 +35,25 @@
 <h1 id="grover-monetary-transaction">Grover monetary transaction</h1>
 <h1 id="table-of-contents">Table of Contents</h1>
 <ol>
-<li><a href="#Overview">Overview</a></li>
-<li><a href="#Code-architecture">Code architecture</a></li>
-<li><a href="#Service-build-information">Build instruction</a></li>
-<li><a href="#Test">Test</a></li>
-<li><a href="#Instructions-for-deploying-the-software">Deployment</a></li>
-<li><a href="#Monitoring-and-alerting">Monitoring and alerting</a></li>
-<li><a href="#OpenApi">OpenApi</a></li>
-<li><a href="#Documentation">Documentation</a></li>
-<li><a href="#Contribution">Contribution</a></li>
+<li><a href="#overview">Overview</a><ol>
+<li><a href="#provided-apis">APIs</a></li>
+</ol>
+</li>
+<li><a href="#code-architecture">Code architecture</a></li>
+<li><a href="#service-build-information">Build instruction</a><ol>
+<li><a href="#source-code">source code</a></li>
+<li><a href="#npm">NPM</a></li>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#docker-compose">Docker-compose</a></li>
+<li><a href="#start.sh-script">Start.sh script</a></li>
+</ol>
+</li>
+<li><a href="#test">Test</a></li>
+<li><a href="#instructions-for-deploying-the-software">Deployment</a></li>
+<li><a href="#monitoring-and-alerting">Monitoring and alerting</a></li>
+<li><a href="#ppenApi">OpenApi</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#todo-list">ToDo list</a></li>
 </ol>
 <h2 id="overview">Overview</h2>
 <p>Grover monetary transaction provides a bunch of REST APIs  to simulate a monetary transaction for the given user. It provides following list of APIs</p>
@@ -125,7 +135,16 @@ Available options:
 -run_lint               Run npm lint
 -generate_doc           Generate the code documentation
 -deploy_on_kubernetes   you need to have a kubernetes cluster already up and running on the machine.</code></pre></div><h2 id="tests">Tests</h2>
-<div><pre class="line-numbers"><code class="language-bash">npm test</code></pre></div><h2 id="instructions-for-deploying-the-software">Instructions for deploying the software</h2>
+<div><pre class="line-numbers"><code class="language-bash">npm test
+ PASS  __test__/e2e-tests/e2e.spec.ts (6.367 s)
+ PASS  __test__/account-balance-tests/account.spec.ts
+ PASS  __test__/account-balance-tests/health.comtroller.spec.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        7.665 s
+Ran all test suites.</code></pre></div><h2 id="instructions-for-deploying-the-software">Instructions for deploying the software</h2>
 <h4 id="helm">Helm</h4>
 <p>with the following instruction you can make the helmchart ready for deployment. Following instruction make a app-0.1.0.tgz helm package. then we can install or push it to a helm repository.</p>
 <div><pre class="line-numbers"><code class="language-bash">cd k8s
@@ -180,7 +199,24 @@ Target platforms: [linux/amd64]
 <h2 id="documentation">Documentation</h2>
 <p>By running following comman you  can generate the full code documentation (Compodoc) and get access to it through port <code>7000</code></p>
 <div><pre class="line-numbers"><code class="language-bash">npm run doc</code></pre></div><p><a href="http://localhost:7000">http://localhost:7000</a></p>
-<h2 id="contribution">Contribution</h2>
+<h2 id="todo-list">ToDo list</h2>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+add moneytion from one account to another account</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+apply commision to money transaction</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+apply commision to widraw money</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+apply deposit fee per minute to the balance</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+add counter metric to the apis</p>
+</li>
+</ul>
 
 
 
