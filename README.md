@@ -3,20 +3,20 @@
 # Table of Contents
 
 1. [Overview](#overview)
-    1.1 [APIs](#provided-apis)
+    1. [APIs](#provided-apis)
 2. [Code architecture](#code-architecture)
 3. [Build instruction](#service-build-information)
-    3.1 [source code](#source-code)
-    3.2 [NPM](#npm)
-    3.3 [Docker](#docker)
-    3.4 [Docker-compose](#docker-compose)
-    3.5 [Start.sh script](#start.sh-script)
+    1. [source code](#source-code)
+    2. [NPM](#npm)
+    3. [Docker](#docker)
+    4. [Docker-compose](#docker-compose)
+    5. [Start.sh script](#start.sh-script)
 4. [Test](#test)
 5. [Deployment](#instructions-for-deploying-the-software)
 6. [Monitoring and alerting](#monitoring-and-alerting)
 7. [OpenApi](#ppenApi)
 8. [Documentation](#documentation)
-9. [Contribution](#contribution)
+9. [ToDo list](#to-do-list)
 
 ## Overview
 
