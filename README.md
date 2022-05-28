@@ -3,14 +3,14 @@
 # Table of Contents
 
 1. [Overview](#overview)
-    1. [APIs](#provided-apis)
+   1. [APIs](#provided-apis)
 2. [Code architecture](#code-architecture)
 3. [Build instruction](#service-build-information)
-    1. [source code](#source-code)
-    2. [NPM](#npm)
-    3. [Docker](#docker)
-    4. [Docker-compose](#docker-compose)
-    5. [Start.sh script](#start.sh-script)
+   1. [source code](#source-code)
+   2. [NPM](#npm)
+   3. [Docker](#docker)
+   4. [Docker-compose](#docker-compose)
+   5. [Start.sh script](#start.sh-script)
 4. [Test](#test)
 5. [Deployment](#instructions-for-deploying-the-software)
 6. [Monitoring and alerting](#monitoring-and-alerting)
@@ -67,8 +67,6 @@ src
     └── modules
         └── common
 ```
-
-
 
 Here we have three very main layers 
 
@@ -260,6 +258,14 @@ http://localhost:7000
 
 ## ToDo list
 
+- [ ]  add moneytion from one account to another account
 
+- [ ]  apply commision to money transaction
 
+- [ ]  apply commision to widraw money
 
+- [ ]  apply deposit fee per minute to the balance
+
+- [ ]  add counter metric to the apis
+
+- [ ] 
