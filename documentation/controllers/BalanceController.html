@@ -1,0 +1,627 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Grover documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Grover documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content controller">
+                   <div class="content-data">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Controllers</li>
+  <li >BalanceController</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/application/controllers/balance.controller.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>api/v1/balance</code>
+            </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Balance controller class</p>
+
+            </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#depositMoney" >depositMoney</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#showBalance" >showBalance</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#widraw" >widraw</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="depositMoney"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>depositMoney</b></span>
+                        <a href="#depositMoney"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>depositMoney(query: <a href="../classes/GetUserAccountRequestDTO.html" target="_self">GetUserAccountRequestDTO</a>, body: <a href="../classes/DepositMoneyRequestDTO.html" target="_self">DepositMoneyRequestDTO</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post(&#x27;deposit&#x27;)<br />@Public()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/application/controllers/balance.controller.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This endpoint deposits money to user account</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>query</td>
+                                    <td>
+                                                <code><a href="../classes/GetUserAccountRequestDTO.html" target="_self" >GetUserAccountRequestDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>query of the API</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="../classes/DepositMoneyRequestDTO.html" target="_self" >DepositMoneyRequestDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>body of the API</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/HttpResponse.html" target="_self" >Promise&lt;HttpResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>lastest changed acount info</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showBalance"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>showBalance</b></span>
+                        <a href="#showBalance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showBalance(query: <a href="../classes/GetUserAccountRequestDTO.html" target="_self">GetUserAccountRequestDTO</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Returns back the balance of the account&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returns back the balance of the account&#x27;, type: ShowBalanceReponseDTO})<br />@ApiBody({type: undefined})<br />@Get()<br />@HttpCode(HttpStatus.OK)<br />@Public()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/application/controllers/balance.controller.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This endpoint show money balance from user account</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>query</td>
+                                    <td>
+                                                <code><a href="../classes/GetUserAccountRequestDTO.html" target="_self" >GetUserAccountRequestDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>query of the API</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/HttpResponse.html" target="_self" >Promise&lt;HttpResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>lastest changed acount info</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="widraw"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>widraw</b></span>
+                        <a href="#widraw"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>widraw(query: <a href="../classes/GetUserAccountRequestDTO.html" target="_self">GetUserAccountRequestDTO</a>, body: <a href="../classes/DepositMoneyRequestDTO.html" target="_self">DepositMoneyRequestDTO</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post(&#x27;widraw&#x27;)<br />@Public()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/application/controllers/balance.controller.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This endpoint wirdraws money from user account</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>query</td>
+                                    <td>
+                                                <code><a href="../classes/GetUserAccountRequestDTO.html" target="_self" >GetUserAccountRequestDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>query of the API</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="../classes/DepositMoneyRequestDTO.html" target="_self" >DepositMoneyRequestDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>body of the API</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/HttpResponse.html" target="_self" >Promise&lt;HttpResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>lastest changed acount info</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Header, HttpCode, HttpStatus, Inject, Post, Query } from &quot;@nestjs/common&quot;;
+import { ApiBody, ApiOperation, ApiResponse } from &quot;@nestjs/swagger&quot;;
+import { Public } from &quot;../../domain/decorators&quot;;
+import { HttpResponseException } from &quot;../../domain/exceptions/http-response.exception&quot;;
+import { processHttpError, validateDTO, validateOutputDTO } from &quot;../../domain/helpers&quot;;
+import { HttpResponse } from &quot;../../domain/interfaces&quot;;
+import { HttpResponseService, LoggerService } from &quot;../../domain/servicecs&quot;;
+import { AccountService } from &quot;../../domain/servicecs/Account.service&quot;;
+import { GetUserAccountRequestDTO } from &quot;../dtos&quot;;
+import { DepositMoneyRequestDTO } from &quot;../dtos/deposit-money-request.dto&quot;;
+import { ShowBalanceReponseDTO } from &quot;../dtos/show-balance-response.dto&quot;;
+/**
+ * Balance controller class
+ */
+@Controller(&#x27;api/v1/balance&#x27;)
+export class BalanceController {
+
+
+    /**
+     * Constructs balance controller class
+     * @param account_service Account service
+     */
+    constructor(
+        @Inject(&#x27;ACCOUNT&#x27;) private readonly account_service: AccountService,
+        private readonly httpResponseService: HttpResponseService,
+        private readonly logger: LoggerService) { }
+    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    /**
+     * This endpoint deposits money to user account
+     * @param query query of the API
+     * @param body body of the API
+     * @returns lastest changed acount info
+     */
+    @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
+    @ApiResponse({
+        status: 201,
+        description: &#x27;Creates a new account&#x27;,
+        type: String,
+    })
+    @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
+    @Post(&#x27;deposit&#x27;)
+    @Public()
+    async depositMoney(@Query() query: GetUserAccountRequestDTO, @Body() body: DepositMoneyRequestDTO): Promise&lt;HttpResponse&gt; {
+        try {
+
+
+            await validateDTO(query, this.httpResponseService);
+            await validateDTO(body, this.httpResponseService);
+            const account &#x3D; await this.account_service.getAccount(query);
+
+            if (!account) {
+                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+            }
+            await validateOutputDTO(account, this.logger);
+            const response &#x3D; await this.account_service.depositModeny(account.id, body);
+            await validateOutputDTO(response, this.logger);
+            return this.httpResponseService.generate(HttpStatus.OK, response);
+        } catch (error) {
+            processHttpError(error, this.logger);
+            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+        }
+    }
+    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    /**
+     * This endpoint wirdraws money from user account
+     * @param query query of the API
+     * @param body body of the API
+     * @returns lastest changed acount info
+     */
+    @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
+    @ApiResponse({
+        status: 201,
+        description: &#x27;Creates a new account&#x27;,
+        type: String,
+    })
+    @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
+    @Post(&#x27;widraw&#x27;)
+    @Public()
+    async widraw(@Query() query: GetUserAccountRequestDTO, @Body() body: DepositMoneyRequestDTO): Promise&lt;HttpResponse&gt; {
+        try {
+            await validateDTO(query, this.httpResponseService);
+            await validateDTO(body, this.httpResponseService);
+            const account &#x3D; await this.account_service.getAccount(query);
+            if (!account) {
+                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+            }
+            await validateOutputDTO(account, this.logger);
+            return this.account_service.widrawMoney(account.id, body).then(async (data) &#x3D;&gt; {
+                await validateOutputDTO(data, this.logger);
+                return this.httpResponseService.generate(HttpStatus.OK, data);
+            }).catch(error &#x3D;&gt; {
+                processHttpError(error, this.logger);
+                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_ACCEPTABLE,error));
+            });
+
+        } catch (error) {
+            processHttpError(error, this.logger);
+            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+        }
+    }
+    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    /**
+     * This endpoint show money balance from user account
+     * @param query query of the API
+     * @param body body of the API
+     * @returns lastest changed acount info
+     */
+    @ApiOperation({ summary: &#x27;Returns back the balance of the account&#x27; })
+    @ApiResponse({
+        status: 200,
+        description: &#x27;Returns back the balance of the account&#x27;,
+        type: ShowBalanceReponseDTO,
+    })
+    @ApiBody({ type: [GetUserAccountRequestDTO] })
+    @Get()
+    @HttpCode(HttpStatus.OK)
+    @Public()
+    async showBalance(@Query() query: GetUserAccountRequestDTO): Promise&lt;HttpResponse&gt; {
+        try {
+            await validateDTO(query, this.httpResponseService);
+            const account &#x3D; await this.account_service.getAccount(query);
+            if (!account) {
+                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+            }
+            await validateOutputDTO(account, this.logger);
+            const balance &#x3D; { balance: account.balance }
+            await validateOutputDTO(balance, this.logger);
+            return this.httpResponseService.generate(HttpStatus.OK, balance);
+        } catch (error) {
+            processHttpError(error, this.logger);
+            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+    }
+}</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'BalanceController.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

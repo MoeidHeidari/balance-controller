@@ -1,92 +1,270 @@
-# Balance-controller
+# Grover monetary transaction
 
-This service manages the balance of users
+# Table of Contents
 
-## Getting started
+1. [Overview](#overview)
+   1. [APIs](#provided-apis)
+2. [Code architecture](#code-architecture)
+3. [Build instruction](#service-build-information)
+   1. [source code](#source-code)
+   2. [NPM](#npm)
+   3. [Docker](#docker)
+   4. [Docker-compose](#docker-compose)
+   5. [Start.sh script](#start.sh-script)
+4. [Test](#test)
+5. [Deployment](#instructions-for-deploying-the-software)
+6. [Monitoring and alerting](#monitoring-and-alerting)
+7. [OpenApi](#ppenApi)
+8. [Documentation](#documentation)
+9. [ToDo list](#todo-list)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Overview
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Grover monetary transaction provides a bunch of REST APIs  to simulate a monetary transaction for the given user. It provides following list of APIs
 
-## Add your files
+---
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+#### Provided APIs
 
+- Create new account (`/api/v1/account`)***[POST][GET][PUT][DELETE]***
+
+- Deposit money (`/api/v1/balance/deposit`)***[POST]***
+
+- Widraw money (`/api/v1/balance/widraw`)***[POST]***
+
+- Show balance(`/api/v1/balance`)***[GET]***
+
+---
+
+## Code architecture
+
+Onion Architecture
+
+```bash
+src
+├── application
+│   ├── controllers
+│   └── dtos
+├── domain
+│   ├── decorators
+│   ├── entities
+│   ├── enums
+│   │   └── httpResponse
+│   ├── exceptions
+│   ├── guards
+│   ├── helpers
+│   ├── interceptors
+│   ├── interfaces
+│   ├── modules
+│   │   └── common
+│   ├── pipes
+│   ├── repositories
+│   ├── seeders
+│   └── servicecs
+│       └── common
+└── infrastructure
+    ├── config
+    └── modules
+        └── common
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/moeidtopcoder2/balance-controller.git
-git branch -M main
-git push -uf origin main
+
+Here we have three very main layers 
+
+- Application
+  
+  in this layer we define the actual behavior of our application, thus being responsible for performing interactions among units of the domain layer.
+
+- Domain
+  
+  this layer represents the business and behavior objects. we define units which play the role of entities and business rules and have a direct relationship to our domain
+
+- Infrastructure
+  
+  this layer the boundary to whatever is external to our application: the database, email services, queue engines, etc.
+
+---
+
+## Service build information
+
+There are different stages of building the application for this service. Based on the environment you want to deploy we have different ways to build the application. following information may help with building the service.
+
+### source code
+
+```bash
+tar -xvf monetary-transaction.tar
+cd monetary-transaction
 ```
 
-## Integrate with your tools
+#### NPM
 
-- [ ] [Set up project integrations](https://gitlab.com/moeidtopcoder2/balance-controller/-/settings/integrations)
+```bash
+npm install
+npm run build
+```
 
-## Collaborate with your team
+#### Docker
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+```bash
+docker build . -t grover:latest
+```
 
-## Test and Deploy
+#### Docker-compose
 
-Use the built-in continuous integration in GitLab.
+```bash
+docker-compose build
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+#### Start.sh script
 
-***
+```bash
+sudo bash scripts/start.sh -h
+Usage: start.sh [-h] [-build_docker] [-build_and_run_docker] [-stop_docker] [-run_app] [-run_test] [-run_lint] [-deploy_on_kubernetes] 
 
-# Editing this README
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+This script helps you to runn the application in different forms. below you can get the full list of available options.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Available options:
 
-## Name
-Choose a self-explaining name for your project.
+-h, --help              Print this help and exit
+-build_docker           Build the docker image called "grover:latest"
+-build_and_run_docker   Build the docker image and run on local machine
+-stop_docker            Stop running docker container named "grover"
+-run_app                Run application with npm in usual way for development
+-run_test               Run npm test
+-run_lint               Run npm lint
+-generate_doc           Generate the code documentation
+-deploy_on_kubernetes   you need to have a kubernetes cluster already up and running on the machine.
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Tests
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+```bash
+npm test
+ PASS  __test__/e2e-tests/e2e.spec.ts (6.367 s)
+ PASS  __test__/account-balance-tests/account.spec.ts
+ PASS  __test__/account-balance-tests/health.comtroller.spec.ts
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Test Suites: 3 passed, 3 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        7.665 s
+Ran all test suites.
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Instructions for deploying the software
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+#### Helm
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+with the following instruction you can make the helmchart ready for deployment. Following instruction make a app-0.1.0.tgz helm package. then we can install or push it to a helm repository.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```bash
+cd k8s
+helm package .
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+with the following instruction you can install the helm chart on an up and running kubernetes cluster.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+```bash
+helm install grover-app app-0.1.0.tgz --set service.type=NodePort
+```
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+#### Kubernetes
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Alternativelly you can deploy the application on an up an running kubernetes cluster using provided config files.
 
-## License
-For open source projects, say how it is licensed.
+```bash
+cd k8s/configFiles
+kubectl apply -f grover-namespace.yaml, grover-configmap.yaml, grover-deployment.yaml, grover-service.yaml
+```
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+it should give you following output
+
+```bash
+namespace/grover created
+configmap/grover-config created
+deployment.apps/grover created
+service/grover created
+```
+
+#### Skaffold
+
+Skaffold handles the workflow for building, pushing and deploying the application
+
+```bash
+make
+```
+
+```bash
+skaffold dev --auto-build --auto-deploy --tail --cleanup
+Listing files to watch...
+ - grover
+Generating tags...
+ - grover -> grover:6b79957-dirty
+Checking cache...
+ - grover: Not found. Building
+Starting build...
+Found [minikube] context, using local docker daemon.
+Building [grover]...
+Target platforms: [linux/amd64]
+[+] Building 14.0s (8/14)                                                                                                                                                                                          
+ => [internal] load build definition from Dockerfile                                                                                                                                                          0.0s
+ => => transferring dockerfile: 594B                                                                                                                                                                          0.0s
+ => [internal] load .dockerignore                                                                                                                                                                             0.0s
+ => => transferring context: 35B                                                                                                                                                                              0.0s
+ => [internal] load metadata for docker.io/library/node:12.19.0-alpine3.9                                                                                                                                     1.3s
+ => [internal] load build context                                                                                                                                                                             0.0s
+ => => transferring context: 5.77kB                                                                                                                                                                           0.0s
+ => [development 1/7] FROM docker.io/library/node:12.19.0-alpine3.9@sha256:63777fafdf8d55f53dc31910d0e086a7bd12c45f5bb09be63d720f5fb37a0635                                                                   0.0s
+ => CACHED [development 2/7] WORKDIR /usr/src/app                                                                                                                                                             0.0s
+ => CACHED [development 3/7] COPY package*.json ./                                                                                                                                                            0.0s
+ => [development 4/7] RUN npm install glob rimraf                                                                                                                                                            10.5s
+ => [production 4/6] RUN npm install
+```
+
+## Monitoring and alerting
+
+#### Health check
+
+by calling the following endpoint you can make sure that the application is running and listening to your desired port
+
+`http://localhost:{port_number}/health`
+
+most probably you will get a result back as follow
+
+> **Example**
+> {"status":"ok","info":{"alive":{"status":"up"}},"error":{},"details":{"alive":{"status":"up"}}}
+
+mertics
+
+to get the default metrics of the application you can use the following endpoint
+
+`http://localhost:{port_number}/metrics`
+
+## OpenApi
+
+by calling the following endpoint you can see the Swagger OpenApi documentation and explore all the available apis and  schemas.
+
+`http://localhost:{port_number}/api`
+
+## Documentation
+
+By running following comman you  can generate the full code documentation (Compodoc) and get access to it through port `7000`
+
+```bash
+npm run doc
+```
+
+http://localhost:7000
+
+## ToDo list
+
+- [ ]  add moneytion from one account to another account
+
+- [ ]  apply commision to money transaction
+
+- [ ]  apply commision to widraw money
+
+- [ ]  apply deposit fee per minute to the balance
+
+- [ ]  add counter metric to the apis
+

@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  grover:
+    image: grover
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: grover
+    restart: always
+    ports:
+      - ${NODE_PORT}:${NODE_PORT}
+    environment:
+      - NODE_ENV=  ${NODE_ENV}
+      - NODE_PORT= ${NODE_PORT}
