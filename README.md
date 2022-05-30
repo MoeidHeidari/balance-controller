@@ -137,7 +137,7 @@ npm start:{dev || debug || prod}
 cd scripts
 bash run.sh -h
 2022.05.30.14.43
-Usage: run.sh [-h] [-build_docker] [-build_and_run_docker] [-stop_docker] [-run_app] [-run_test] [-run_lint] [-deploy_on_kubernetes] 
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-buildDocker] [-runDocker] [-runApp] [-runDoc] [-packageHelm]
 
 
 This script helps you to run the application in different forms. below you can get the full list of available options.
