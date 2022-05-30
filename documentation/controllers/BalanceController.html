@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post(&#x27;deposit&#x27;)<br />@Public()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post(&#x27;deposit&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/application/controllers/balance.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/application/controllers/balance.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -245,14 +245,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Returns back the balance of the account&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returns back the balance of the account&#x27;, type: ShowBalanceReponseDTO})<br />@ApiBody({type: undefined})<br />@Get()<br />@HttpCode(HttpStatus.OK)<br />@Public()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Returns back the balance of the account&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returns back the balance of the account&#x27;, type: ShowBalanceReponseDTO})<br />@ApiBody({type: undefined})<br />@Get()<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/application/controllers/balance.controller.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/application/controllers/balance.controller.ts:116</a></div>
                 </td>
             </tr>
 
@@ -331,14 +331,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post(&#x27;widraw&#x27;)<br />@Public()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post(&#x27;widraw&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/application/controllers/balance.controller.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/application/controllers/balance.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -414,140 +414,139 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Header, HttpCode, HttpStatus, Inject, Post, Query } from &quot;@nestjs/common&quot;;
-import { ApiBody, ApiOperation, ApiResponse } from &quot;@nestjs/swagger&quot;;
-import { Public } from &quot;../../domain/decorators&quot;;
-import { HttpResponseException } from &quot;../../domain/exceptions/http-response.exception&quot;;
-import { processHttpError, validateDTO, validateOutputDTO } from &quot;../../domain/helpers&quot;;
-import { HttpResponse } from &quot;../../domain/interfaces&quot;;
-import { HttpResponseService, LoggerService } from &quot;../../domain/servicecs&quot;;
-import { AccountService } from &quot;../../domain/servicecs/Account.service&quot;;
-import { GetUserAccountRequestDTO } from &quot;../dtos&quot;;
-import { DepositMoneyRequestDTO } from &quot;../dtos/deposit-money-request.dto&quot;;
-import { ShowBalanceReponseDTO } from &quot;../dtos/show-balance-response.dto&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Header, HttpCode, HttpStatus, Inject, Post, Query } from &#x27;@nestjs/common&#x27;;
+import { ApiBody, ApiOperation, ApiResponse } from &#x27;@nestjs/swagger&#x27;;
+import { HttpResponseException } from &#x27;../../domain/exceptions/http-response.exception&#x27;;
+import { processHttpError, validateDTO, validateOutputDTO } from &#x27;../../domain/helpers&#x27;;
+import { HttpResponse } from &#x27;../../domain/interfaces&#x27;;
+import { HttpResponseService, LoggerService } from &#x27;../../domain/servicecs&#x27;;
+import { AccountService } from &#x27;../../domain/servicecs/Account.service&#x27;;
+import { GetUserAccountRequestDTO } from &#x27;../dtos&#x27;;
+import { DepositMoneyRequestDTO } from &#x27;../dtos/deposit-money-request.dto&#x27;;
+import { ShowBalanceReponseDTO } from &#x27;../dtos/show-balance-response.dto&#x27;;
 /**
  * Balance controller class
  */
 @Controller(&#x27;api/v1/balance&#x27;)
 export class BalanceController {
+  /**
+   * Constructs balance controller class
+   * @param account_service Account service
+   */
+  constructor(
+    @Inject(&#x27;ACCOUNT&#x27;) private readonly account_service: AccountService,
+    private readonly httpResponseService: HttpResponseService,
+    private readonly logger: LoggerService
+  ) {}
+  //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  /**
+   * This endpoint deposits money to user account
+   * @param query query of the API
+   * @param body body of the API
+   * @returns lastest changed acount info
+   */
+  @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Creates a new account&#x27;,
+    type: String,
+  })
+  @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
+  @Post(&#x27;deposit&#x27;)
+  async depositMoney(
+    @Query() query: GetUserAccountRequestDTO,
+    @Body() body: DepositMoneyRequestDTO
+  ): Promise&lt;HttpResponse&gt; {
+    try {
+      await validateDTO(query, this.httpResponseService);
+      await validateDTO(body, this.httpResponseService);
+      const account &#x3D; await this.account_service.getAccount(query);
 
-
-    /**
-     * Constructs balance controller class
-     * @param account_service Account service
-     */
-    constructor(
-        @Inject(&#x27;ACCOUNT&#x27;) private readonly account_service: AccountService,
-        private readonly httpResponseService: HttpResponseService,
-        private readonly logger: LoggerService) { }
-    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-    /**
-     * This endpoint deposits money to user account
-     * @param query query of the API
-     * @param body body of the API
-     * @returns lastest changed acount info
-     */
-    @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
-    @ApiResponse({
-        status: 201,
-        description: &#x27;Creates a new account&#x27;,
-        type: String,
-    })
-    @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
-    @Post(&#x27;deposit&#x27;)
-    @Public()
-    async depositMoney(@Query() query: GetUserAccountRequestDTO, @Body() body: DepositMoneyRequestDTO): Promise&lt;HttpResponse&gt; {
-        try {
-
-
-            await validateDTO(query, this.httpResponseService);
-            await validateDTO(body, this.httpResponseService);
-            const account &#x3D; await this.account_service.getAccount(query);
-
-            if (!account) {
-                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-            }
-            await validateOutputDTO(account, this.logger);
-            const response &#x3D; await this.account_service.depositModeny(account.id, body);
-            await validateOutputDTO(response, this.logger);
-            return this.httpResponseService.generate(HttpStatus.OK, response);
-        } catch (error) {
-            processHttpError(error, this.logger);
-            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-        }
+      if (!account) {
+        throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+      }
+      await validateOutputDTO(account, this.logger);
+      const response &#x3D; await this.account_service.depositModeny(account.id, body);
+      await validateOutputDTO(response, this.logger);
+      return this.httpResponseService.generate(HttpStatus.OK, response);
+    } catch (error) {
+      processHttpError(error, this.logger);
+      throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
     }
-    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-    /**
-     * This endpoint wirdraws money from user account
-     * @param query query of the API
-     * @param body body of the API
-     * @returns lastest changed acount info
-     */
-    @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
-    @ApiResponse({
-        status: 201,
-        description: &#x27;Creates a new account&#x27;,
-        type: String,
-    })
-    @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
-    @Post(&#x27;widraw&#x27;)
-    @Public()
-    async widraw(@Query() query: GetUserAccountRequestDTO, @Body() body: DepositMoneyRequestDTO): Promise&lt;HttpResponse&gt; {
-        try {
-            await validateDTO(query, this.httpResponseService);
-            await validateDTO(body, this.httpResponseService);
-            const account &#x3D; await this.account_service.getAccount(query);
-            if (!account) {
-                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-            }
-            await validateOutputDTO(account, this.logger);
-            return this.account_service.widrawMoney(account.id, body).then(async (data) &#x3D;&gt; {
-                await validateOutputDTO(data, this.logger);
-                return this.httpResponseService.generate(HttpStatus.OK, data);
-            }).catch(error &#x3D;&gt; {
-                processHttpError(error, this.logger);
-                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_ACCEPTABLE,error));
-            });
-
-        } catch (error) {
-            processHttpError(error, this.logger);
-            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-        }
+  }
+  //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  /**
+   * This endpoint wirdraws money from user account
+   * @param query query of the API
+   * @param body body of the API
+   * @returns lastest changed acount info
+   */
+  @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Creates a new account&#x27;,
+    type: String,
+  })
+  @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
+  @Post(&#x27;widraw&#x27;)
+  async widraw(@Query() query: GetUserAccountRequestDTO, @Body() body: DepositMoneyRequestDTO): Promise&lt;HttpResponse&gt; {
+    try {
+      await validateDTO(query, this.httpResponseService);
+      await validateDTO(body, this.httpResponseService);
+      const account &#x3D; await this.account_service.getAccount(query);
+      if (!account) {
+        throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+      }
+      await validateOutputDTO(account, this.logger);
+      return this.account_service
+        .widrawMoney(account.id, body)
+        .then(async data &#x3D;&gt; {
+          await validateOutputDTO(data, this.logger);
+          return this.httpResponseService.generate(HttpStatus.OK, data);
+        })
+        .catch(error &#x3D;&gt; {
+          processHttpError(error, this.logger);
+          throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_ACCEPTABLE, error));
+        });
+    } catch (error) {
+      processHttpError(error, this.logger);
+      throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
     }
-    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-    /**
-     * This endpoint show money balance from user account
-     * @param query query of the API
-     * @param body body of the API
-     * @returns lastest changed acount info
-     */
-    @ApiOperation({ summary: &#x27;Returns back the balance of the account&#x27; })
-    @ApiResponse({
-        status: 200,
-        description: &#x27;Returns back the balance of the account&#x27;,
-        type: ShowBalanceReponseDTO,
-    })
-    @ApiBody({ type: [GetUserAccountRequestDTO] })
-    @Get()
-    @HttpCode(HttpStatus.OK)
-    @Public()
-    async showBalance(@Query() query: GetUserAccountRequestDTO): Promise&lt;HttpResponse&gt; {
-        try {
-            await validateDTO(query, this.httpResponseService);
-            const account &#x3D; await this.account_service.getAccount(query);
-            if (!account) {
-                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-            }
-            await validateOutputDTO(account, this.logger);
-            const balance &#x3D; { balance: account.balance }
-            await validateOutputDTO(balance, this.logger);
-            return this.httpResponseService.generate(HttpStatus.OK, balance);
-        } catch (error) {
-            processHttpError(error, this.logger);
-            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
-        }
+  }
+  //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  /**
+   * This endpoint show money balance from user account
+   * @param query query of the API
+   * @param body body of the API
+   * @returns lastest changed acount info
+   */
+  @ApiOperation({ summary: &#x27;Returns back the balance of the account&#x27; })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Returns back the balance of the account&#x27;,
+    type: ShowBalanceReponseDTO,
+  })
+  @ApiBody({ type: [GetUserAccountRequestDTO] })
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  async showBalance(@Query() query: GetUserAccountRequestDTO): Promise&lt;HttpResponse&gt; {
+    try {
+      await validateDTO(query, this.httpResponseService);
+      const account &#x3D; await this.account_service.getAccount(query);
+      if (!account) {
+        throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+      }
+      await validateOutputDTO(account, this.logger);
+      const balance &#x3D; { balance: account.balance };
+      await validateOutputDTO(balance, this.logger);
+      return this.httpResponseService.generate(HttpStatus.OK, balance);
+    } catch (error) {
+      processHttpError(error, this.logger);
+      throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
     }
-}</code></pre>
+  }
+}
+</code></pre>
     </div>
 </div>
 

@@ -147,14 +147,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post()<br />@Public()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Entry point for crteate account API&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Creates a new account&#x27;, type: String})<br />@Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/application/controllers/account.controller.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/application/controllers/account.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -233,14 +233,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Deletes the account associated to a given user with user id&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Deletes account object of the user&#x27;})<br />@ApiBody({type: undefined})<br />@Delete()<br />@HttpCode(HttpStatus.OK)<br />@Public()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Deletes the account associated to a given user with user id&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Deletes account object of the user&#x27;})<br />@ApiBody({type: undefined})<br />@Delete()<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/application/controllers/account.controller.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/application/controllers/account.controller.ts:109</a></div>
                 </td>
             </tr>
 
@@ -314,14 +314,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Returns back the account associated to a given user with user id&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returns back account object of the user&#x27;, type: GetUserAccountResponseDTO})<br />@ApiBody({type: undefined})<br />@Get()<br />@HttpCode(HttpStatus.OK)<br />@Public()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Returns back the account associated to a given user with user id&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Returns back account object of the user&#x27;, type: GetUserAccountResponseDTO})<br />@ApiBody({type: undefined})<br />@Get()<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/application/controllers/account.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/application/controllers/account.controller.ts:81</a></div>
                 </td>
             </tr>
 
@@ -395,14 +395,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Updates the account associated to a given user with user id&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Updates account object of the user&#x27;, type: CreateAccountRequestDTO})<br />@ApiBody({type: undefined})<br />@Put()<br />@HttpCode(HttpStatus.OK)<br />@Public()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Updates the account associated to a given user with user id&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Updates account object of the user&#x27;, type: CreateAccountRequestDTO})<br />@ApiBody({type: undefined})<br />@Put()<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/application/controllers/account.controller.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/application/controllers/account.controller.ts:134</a></div>
                 </td>
             </tr>
 
@@ -462,145 +462,153 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Header, HttpCode, HttpStatus, Inject, Patch, Post, Put, Query, Req, Res } from &quot;@nestjs/common&quot;;
-import { ApiBody, ApiOperation, ApiResponse } from &quot;@nestjs/swagger&quot;;
-import { Public } from &quot;../../domain/decorators&quot;;
-import { HttpResponseException } from &quot;../../domain/exceptions/http-response.exception&quot;;
-import { processHttpError, validateDTO, validateOutputDTO } from &quot;../../domain/helpers&quot;;
-import { HttpResponse } from &quot;../../domain/interfaces&quot;;
-import { HttpResponseService, LoggerService } from &quot;../../domain/servicecs&quot;;
-import { AccountService } from &quot;../../domain/servicecs/Account.service&quot;;
-import { CreateAccountRequestDTO, GetUserAccountRequestDTO, GetUserAccountResponseDTO } from &quot;../dtos&quot;;
-import { DepositMoneyRequestDTO } from &quot;../dtos/deposit-money-request.dto&quot;;
-import { ShowBalanceReponseDTO } from &quot;../dtos/show-balance-response.dto&quot;;
-import { UpdateAccountRequestDTO } from &quot;../dtos/update-account-request.dto&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Header,
+  HttpCode,
+  HttpStatus,
+  Inject,
+  Patch,
+  Post,
+  Put,
+  Query,
+  Req,
+  Res,
+} from &#x27;@nestjs/common&#x27;;
+import { ApiBody, ApiOperation, ApiResponse } from &#x27;@nestjs/swagger&#x27;;
+import { HttpResponseException } from &#x27;../../domain/exceptions/http-response.exception&#x27;;
+import { processHttpError, validateDTO, validateOutputDTO } from &#x27;../../domain/helpers&#x27;;
+import { HttpResponse } from &#x27;../../domain/interfaces&#x27;;
+import { HttpResponseService, LoggerService } from &#x27;../../domain/servicecs&#x27;;
+import { AccountService } from &#x27;../../domain/servicecs/Account.service&#x27;;
+import { CreateAccountRequestDTO, GetUserAccountRequestDTO, GetUserAccountResponseDTO } from &#x27;../dtos&#x27;;
+import { DepositMoneyRequestDTO } from &#x27;../dtos/deposit-money-request.dto&#x27;;
+import { ShowBalanceReponseDTO } from &#x27;../dtos/show-balance-response.dto&#x27;;
+import { UpdateAccountRequestDTO } from &#x27;../dtos/update-account-request.dto&#x27;;
 /**
  * Account controller class
  */
 @Controller(&#x27;api/v1/account&#x27;)
 export class AccountController {
-
-
-    /**
-     * Constructs account controller class
-     * @param account_service Account service
-     */
-    constructor( @Inject(&#x27;ACCOUNT&#x27;) private readonly account_service: AccountService,
-        private readonly httpResponseService: HttpResponseService,
-        private readonly logger: LoggerService) { }
-    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-    /**
-     * This endpoint creates a new account for a given user
-     * @param body body of the request
-     * @returns return CreateAccountReponseDTO
-     */
-    @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
-    @ApiResponse({
-        status: 201,
-        description: &#x27;Creates a new account&#x27;,
-        type: String,
-    })
-    @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
-    @Post()
-    @Public()
-    async createNewAccountHandler(@Body() body: CreateAccountRequestDTO): Promise&lt;HttpResponse&gt; {
-        try {
-            await validateDTO(body, this.httpResponseService);
-            const response &#x3D; await this.account_service.createNewAccount(body);
-            await validateOutputDTO(response, this.logger);
-            return this.httpResponseService.generate(HttpStatus.CREATED, response);
-        } catch (error) {
-            processHttpError(error, this.logger);
-            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-        }
-
+  /**
+   * Constructs account controller class
+   * @param account_service Account service
+   */
+  constructor(
+    @Inject(&#x27;ACCOUNT&#x27;) private readonly account_service: AccountService,
+    private readonly httpResponseService: HttpResponseService,
+    private readonly logger: LoggerService
+  ) {}
+  //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  /**
+   * This endpoint creates a new account for a given user
+   * @param body body of the request
+   * @returns return CreateAccountReponseDTO
+   */
+  @ApiOperation({ summary: &#x27;Entry point for crteate account API&#x27; })
+  @ApiResponse({
+    status: 201,
+    description: &#x27;Creates a new account&#x27;,
+    type: String,
+  })
+  @Header(&#x27;content-type&#x27;, &#x27;application/json&#x27;)
+  @Post()
+  async createNewAccountHandler(@Body() body: CreateAccountRequestDTO): Promise&lt;HttpResponse&gt; {
+    try {
+      await validateDTO(body, this.httpResponseService);
+      const response &#x3D; await this.account_service.createNewAccount(body);
+      await validateOutputDTO(response, this.logger);
+      return this.httpResponseService.generate(HttpStatus.CREATED, response);
+    } catch (error) {
+      processHttpError(error, this.logger);
+      throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
     }
-    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-    /**
-    * Takes a radious in which we want to invite the customers.
-    * @param body radious circle information
-    * @returns HTTPReponse
-    */
-    @ApiOperation({ summary: &#x27;Returns back the account associated to a given user with user id&#x27; })
-    @ApiResponse({
-        status: 200,
-        description: &#x27;Returns back account object of the user&#x27;,
-        type: GetUserAccountResponseDTO,
-    })
-    @ApiBody({ type: [GetUserAccountRequestDTO] })
-    @Get()
-    @HttpCode(HttpStatus.OK)
-    @Public()
-    async getAccount(@Query() query: GetUserAccountRequestDTO): Promise&lt;HttpResponse&gt; {
-        try {
-            await validateDTO(query, this.httpResponseService);
-            const response &#x3D; await this.account_service.getAccount(query);
-            if (!response) {
-                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-            }
-            await validateOutputDTO(response, this.logger);
-            return this.httpResponseService.generate(HttpStatus.OK, response);
-        } catch (error) {
-            processHttpError(error, this.logger);
-            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
-        }
+  }
+  //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  /**
+   * Takes a radious in which we want to invite the customers.
+   * @param body radious circle information
+   * @returns HTTPReponse
+   */
+  @ApiOperation({ summary: &#x27;Returns back the account associated to a given user with user id&#x27; })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Returns back account object of the user&#x27;,
+    type: GetUserAccountResponseDTO,
+  })
+  @ApiBody({ type: [GetUserAccountRequestDTO] })
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  async getAccount(@Query() query: GetUserAccountRequestDTO): Promise&lt;HttpResponse&gt; {
+    try {
+      await validateDTO(query, this.httpResponseService);
+      const response &#x3D; await this.account_service.getAccount(query);
+      if (!response) {
+        throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+      }
+      await validateOutputDTO(response, this.logger);
+      return this.httpResponseService.generate(HttpStatus.OK, response);
+    } catch (error) {
+      processHttpError(error, this.logger);
+      throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
     }
-    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-    /**
-    * Deletes the account of a given user.
-    * @param body GetUserAccountRequestDTO
-    * @returns HTTPReponse
-    */
-    @ApiOperation({ summary: &#x27;Deletes the account associated to a given user with user id&#x27; })
-    @ApiResponse({
-        status: 200,
-        description: &#x27;Deletes account object of the user&#x27;
-    })
-    @ApiBody({ type: [GetUserAccountRequestDTO] })
-    @Delete()
-    @HttpCode(HttpStatus.OK)
-    @Public()
-    async deleteAccount(@Query() query: GetUserAccountRequestDTO): Promise&lt;HttpResponse&gt; {
-        try {
-            await validateDTO(query, this.httpResponseService);
-            await this.account_service.deleteAccount(query);
-            return this.httpResponseService.generate(HttpStatus.OK);
-        } catch (error) {
-            processHttpError(error, this.logger);
-            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
-        }
+  }
+  //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  /**
+   * Deletes the account of a given user.
+   * @param body GetUserAccountRequestDTO
+   * @returns HTTPReponse
+   */
+  @ApiOperation({ summary: &#x27;Deletes the account associated to a given user with user id&#x27; })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Deletes account object of the user&#x27;,
+  })
+  @ApiBody({ type: [GetUserAccountRequestDTO] })
+  @Delete()
+  @HttpCode(HttpStatus.OK)
+  async deleteAccount(@Query() query: GetUserAccountRequestDTO): Promise&lt;HttpResponse&gt; {
+    try {
+      await validateDTO(query, this.httpResponseService);
+      await this.account_service.deleteAccount(query);
+      return this.httpResponseService.generate(HttpStatus.OK);
+    } catch (error) {
+      processHttpError(error, this.logger);
+      throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
     }
-    //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-    /**
-    * Updates the account of a given user.
-    * @param body GetUserAccountRequestDTO
-    * @returns HTTPReponse
-    */
-    @ApiOperation({ summary: &#x27;Updates the account associated to a given user with user id&#x27; })
-    @ApiResponse({
-        status: 200,
-        description: &#x27;Updates account object of the user&#x27;,
-        type: CreateAccountRequestDTO
-    })
-    @ApiBody({ type: [UpdateAccountRequestDTO] })
-    @Put()
-    @HttpCode(HttpStatus.OK)
-    @Public()
-    async updateAccount(@Body() body: UpdateAccountRequestDTO): Promise&lt;HttpResponse&gt; {
-        try {
-            await validateDTO(body, this.httpResponseService);
-            const response &#x3D; await this.account_service.updateAccount(body);
-            if (!response) {
-                throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
-            }
-            await validateOutputDTO(response, this.logger);
-            return this.httpResponseService.generate(HttpStatus.OK, response);
-        } catch (error) {
-            processHttpError(error, this.logger);
-            throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
-        }
+  }
+  //&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  /**
+   * Updates the account of a given user.
+   * @param body GetUserAccountRequestDTO
+   * @returns HTTPReponse
+   */
+  @ApiOperation({ summary: &#x27;Updates the account associated to a given user with user id&#x27; })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Updates account object of the user&#x27;,
+    type: CreateAccountRequestDTO,
+  })
+  @ApiBody({ type: [UpdateAccountRequestDTO] })
+  @Put()
+  @HttpCode(HttpStatus.OK)
+  async updateAccount(@Body() body: UpdateAccountRequestDTO): Promise&lt;HttpResponse&gt; {
+    try {
+      await validateDTO(body, this.httpResponseService);
+      const response &#x3D; await this.account_service.updateAccount(body);
+      if (!response) {
+        throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.NOT_FOUND));
+      }
+      await validateOutputDTO(response, this.logger);
+      return this.httpResponseService.generate(HttpStatus.OK, response);
+    } catch (error) {
+      processHttpError(error, this.logger);
+      throw new HttpResponseException(this.httpResponseService.generate(HttpStatus.INTERNAL_SERVER_ERROR));
     }
-    
+  }
 }
 </code></pre>
     </div>

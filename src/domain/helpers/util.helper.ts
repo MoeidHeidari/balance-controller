@@ -84,7 +84,7 @@ export async function validateOutputDTO(dto: any, logger: any): Promise<any> {
  * @param decimalPlaces number of decimal places
  * @returns rounded number
  */
-export function naiveRound(num:number, decimalPlaces = 2) {
-  var p = Math.pow(10, decimalPlaces);
+export function naiveRound(num: number, decimalPlaces = 2) {
+  const p = Math.pow(10, decimalPlaces);
   return Math.round(num * p) / p;
 }

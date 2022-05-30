@@ -213,37 +213,36 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
-import { IsDefined, IsNotEmpty, IsNumber } from &quot;class-validator&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { IsDefined, IsNotEmpty, IsNumber } from &#x27;class-validator&#x27;;
 
 /**
  * List of allowed properties in this DTO
  */
 const allowedProperties &#x3D; [&#x27;balance&#x27;];
 export class ShowBalanceReponseDTO {
-    /**
-    * Current Balance of the account
-    */
-     @IsDefined()
-     @IsNumber()
-     @IsNotEmpty()
-     @ApiProperty({
-        description: &#x27;balance of the user account&#x27;,
-      })
-     balance: number;
+  /**
+   * Current Balance of the account
+   */
+  @IsDefined()
+  @IsNumber()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: &#x27;balance of the user account&#x27;,
+  })
+  balance: number;
 
-
-    /**
-    * get user DTO constructor
-    * @param properties DTO properties
-    */
-    constructor(properties: any &#x3D; {}) {
-        Object.keys(properties).forEach((key: string) &#x3D;&gt; {
-            if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
-        });
-    }
-
-}</code></pre>
+  /**
+   * get user DTO constructor
+   * @param properties DTO properties
+   */
+  constructor(properties: any &#x3D; {}) {
+    Object.keys(properties).forEach((key: string) &#x3D;&gt; {
+      if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
+    });
+  }
+}
+</code></pre>
     </div>
 </div>
 
