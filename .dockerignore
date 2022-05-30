@@ -3,6 +3,7 @@
 !.env*
 !bootstrap.sh
 !package.json
+!package-lock.json
 !yarn.lock
 !scripts/
 !yarn-offline-mirror/

@@ -192,17 +192,22 @@ import { AccountService } from &#x27;../servicecs/Account.service&#x27;;
 import { AccountController } from &#x27;../../application/controllers/account.controller&#x27;;
 import { AccountRepository } from &#x27;../repositories/account.repository&#x27;;
 import { InMemoryDBService } from &#x27;@nestjs-addons/in-memory-db&#x27;;
-import { HttpResponseService, LoggerService, } from &#x27;../servicecs&#x27;;
+import { HttpResponseService, LoggerService } from &#x27;../servicecs&#x27;;
 import { CommonModule } from &#x27;../../infrastructure/modules/common&#x27;;
 import { BalanceController } from &#x27;../../application/controllers&#x27;;
 
 @Module({
   imports: [CommonModule],
-  controllers: [AccountController,BalanceController],
-  providers:[{
-    provide: &#x27;ACCOUNT&#x27;,
-    useClass: AccountService
-  },AccountRepository,InMemoryDBService,HttpResponseService]
+  controllers: [AccountController, BalanceController],
+  providers: [
+    {
+      provide: &#x27;ACCOUNT&#x27;,
+      useClass: AccountService,
+    },
+    AccountRepository,
+    InMemoryDBService,
+    HttpResponseService,
+  ],
 })
 export class AccountModule {}
 </code></pre>

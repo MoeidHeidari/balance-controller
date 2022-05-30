@@ -117,7 +117,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/application/dtos/create-account-response.dto.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/application/dtos/create-account-response.dto.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -195,7 +195,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/application/dtos/create-account-response.dto.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/application/dtos/create-account-response.dto.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -220,38 +220,38 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
-import { IsDefined, IsNotEmpty, IsString } from &quot;class-validator&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { IsDefined, IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
 /**
  * List of allowed properties in this DTO
  */
-const allowedProperties &#x3D; [&#x27;acccount_token&#x27;,&#x27;id&#x27;];
+const allowedProperties &#x3D; [&#x27;acccount_token&#x27;, &#x27;id&#x27;];
 /**
  * CreateAccountReposnseDto
  */
 export class CreateAccountReposnseDto {
+  /**
+   * id of the user
+   */
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: &#x27;id of the user&#x27;,
+  })
+  id: string;
 
-    /**
-    * id of the user
-    */
-    @IsDefined()
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        description: &#x27;id of the user&#x27;,
-      })
-    id: string;
-
-    /**
+  /**
    * get user DTO constructor
    * @param properties DTO properties
    */
-    constructor(properties: any &#x3D; {}) {
-        Object.keys(properties).forEach((key: string) &#x3D;&gt; {
-            if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
-        });
-    }
-}</code></pre>
+  constructor(properties: any &#x3D; {}) {
+    Object.keys(properties).forEach((key: string) &#x3D;&gt; {
+      if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
+    });
+  }
+}
+</code></pre>
     </div>
 </div>
 

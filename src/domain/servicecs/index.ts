@@ -1,2 +1,2 @@
 export * from './common';
-export * from './Account.service'
+export * from './Account.service';

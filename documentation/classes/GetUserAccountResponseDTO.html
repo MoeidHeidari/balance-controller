@@ -131,7 +131,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -209,7 +209,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -250,7 +250,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -291,7 +291,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -332,7 +332,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -373,7 +373,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -414,7 +414,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -455,7 +455,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -496,7 +496,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/application/dtos/get-account-reponse.dto.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -521,116 +521,136 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
-import { IsBoolean, IsDate, IsDefined, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from &quot;class-validator&quot;;
-import { Currencies } from &quot;../../domain/enums/currencies.enum&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import {
+  IsBoolean,
+  IsDate,
+  IsDefined,
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from &#x27;class-validator&#x27;;
+import { Currencies } from &#x27;../../domain/enums/currencies.enum&#x27;;
 
 /**
  * List of allowed properties in this DTO
  */
-const allowedProperties &#x3D; [&#x27;id&#x27;, &#x27;name&#x27;, &#x27;familty&#x27;, &#x27;username&#x27;, &#x27;currency&#x27;,&#x27;created_at&#x27;, &#x27;updated_at&#x27;, &#x27;token&#x27;,&#x27;balance&#x27;];
+const allowedProperties &#x3D; [
+  &#x27;id&#x27;,
+  &#x27;name&#x27;,
+  &#x27;familty&#x27;,
+  &#x27;username&#x27;,
+  &#x27;currency&#x27;,
+  &#x27;created_at&#x27;,
+  &#x27;updated_at&#x27;,
+  &#x27;token&#x27;,
+  &#x27;balance&#x27;,
+];
 export class GetUserAccountResponseDTO {
-    /**
-    * id of the user
-    */
-    @IsDefined()
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        description: &#x27;id of the user&#x27;,
-      })
-    id: string;
+  /**
+   * id of the user
+   */
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: &#x27;id of the user&#x27;,
+  })
+  id: string;
 
-    /**
-    * name of the user
-    */
-    @IsDefined()
-    @IsString()
-    @MaxLength(30)
-    @MinLength(3)
-    @ApiProperty({
-        description: &#x27;name of the user&#x27;,
-      })
-    name: string;
-    /**
-    * familty of the user
-    */
-    @IsDefined()
-    @IsString()
-    @MaxLength(30)
-    @MinLength(3)
-    @ApiProperty({
-        description: &#x27;family of the user&#x27;,
-      })
-    family: string;
-    /**
-    * username of the user
-    */
-    @IsDefined()
-    @IsString()
-    @MaxLength(30)
-    @MinLength(3)
-    @ApiProperty({
-        description: &#x27;username of the user&#x27;,
-      })
-    username: string;
-    /**
-    * default currency of the account
-    */
-    @IsDefined()
-    @IsNotEmpty()
-    @IsEnum(Currencies, { each: true })
-    @ApiProperty({
-        description: &#x27;currency of the user acount balance&#x27;,
-      })
-    currency: Currencies;
+  /**
+   * name of the user
+   */
+  @IsDefined()
+  @IsString()
+  @MaxLength(30)
+  @MinLength(3)
+  @ApiProperty({
+    description: &#x27;name of the user&#x27;,
+  })
+  name: string;
+  /**
+   * familty of the user
+   */
+  @IsDefined()
+  @IsString()
+  @MaxLength(30)
+  @MinLength(3)
+  @ApiProperty({
+    description: &#x27;family of the user&#x27;,
+  })
+  family: string;
+  /**
+   * username of the user
+   */
+  @IsDefined()
+  @IsString()
+  @MaxLength(30)
+  @MinLength(3)
+  @ApiProperty({
+    description: &#x27;username of the user&#x27;,
+  })
+  username: string;
+  /**
+   * default currency of the account
+   */
+  @IsDefined()
+  @IsNotEmpty()
+  @IsEnum(Currencies, { each: true })
+  @ApiProperty({
+    description: &#x27;currency of the user acount balance&#x27;,
+  })
+  currency: Currencies;
 
+  /**
+   * date of when account had been created
+   */
+  @IsDefined()
+  @IsDate()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: &#x27;acount created at&#x27;,
+  })
+  created_at: Date;
 
-    /**
-    * date of when account had been created
-    */
-    @IsDefined()
-    @IsDate()
-    @IsNotEmpty()
-    @ApiProperty({
-        description: &#x27;acount created at&#x27;,
-      })
-    created_at: Date;
+  /**
+   * date of when account had been updated
+   */
+  @IsDefined()
+  @IsDate()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: &#x27;account updated at&#x27;,
+  })
+  updated_at: Date;
 
-    /**
-    * date of when account had been updated
-    */
-    @IsDefined()
-    @IsDate()
-    @IsNotEmpty()
-    @ApiProperty({
-        description: &#x27;account updated at&#x27;,
-      })
-    updated_at: Date;
+  /**
+   * balance of the aaount
+   */
+  @IsDefined()
+  @IsNumber()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: &#x27;balance of the user acount&#x27;,
+  })
+  balance: number;
 
-    /**
-    * balance of the aaount
-    */
-    @IsDefined()
-    @IsNumber()
-    @IsNotEmpty()
-    @ApiProperty({
-        description: &#x27;balance of the user acount&#x27;,
-      })
-    balance: number;
-
-
-    /**
-    * get user DTO constructor
-    * @param properties DTO properties
-    */
-    constructor(properties: any &#x3D; {}) {
-        Object.keys(properties).forEach((key: string) &#x3D;&gt; {
-            if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
-        });
-    }
-
-}</code></pre>
+  /**
+   * get user DTO constructor
+   * @param properties DTO properties
+   */
+  constructor(properties: any &#x3D; {}) {
+    Object.keys(properties).forEach((key: string) &#x3D;&gt; {
+      if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
+    });
+  }
+}
+</code></pre>
     </div>
 </div>
 

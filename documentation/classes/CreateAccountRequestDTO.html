@@ -345,71 +345,71 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
-import { IsDefined, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from &quot;class-validator&quot;;
-import { Currencies } from &quot;../../domain/enums/currencies.enum&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { IsDefined, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from &#x27;class-validator&#x27;;
+import { Currencies } from &#x27;../../domain/enums/currencies.enum&#x27;;
 
 /**
  * List of allowed properties in this DTO
  */
-const allowedProperties &#x3D; [ &#x27;name&#x27;, &#x27;familty&#x27;, &#x27;username&#x27;,&#x27;currency&#x27;];
+const allowedProperties &#x3D; [&#x27;name&#x27;, &#x27;familty&#x27;, &#x27;username&#x27;, &#x27;currency&#x27;];
 export class CreateAccountRequestDTO {
-    /**
-    * name of the user
-    */
-    @IsDefined()
-    @IsString()
-    @MaxLength(30)
-    @MinLength(3)
-    @ApiProperty({
-        description: &#x27;name of the user&#x27;,
-      })
-    name: string;
-    /**
-    * familty of the user
-    */
-    @IsDefined()
-    @IsString()
-    @MaxLength(30)
-    @MinLength(3)
-    @ApiProperty({
-        description: &#x27;family of the user&#x27;,
-      })
-    family: string;
-    /**
-    * username of the user
-    */
-    @IsDefined()
-    @IsString()
-    @MaxLength(30)
-    @MinLength(3)
-    @ApiProperty({
-        description: &#x27;username of the user&#x27;,
-      })
-    username: string;
+  /**
+   * name of the user
+   */
+  @IsDefined()
+  @IsString()
+  @MaxLength(30)
+  @MinLength(3)
+  @ApiProperty({
+    description: &#x27;name of the user&#x27;,
+  })
+  name: string;
+  /**
+   * familty of the user
+   */
+  @IsDefined()
+  @IsString()
+  @MaxLength(30)
+  @MinLength(3)
+  @ApiProperty({
+    description: &#x27;family of the user&#x27;,
+  })
+  family: string;
+  /**
+   * username of the user
+   */
+  @IsDefined()
+  @IsString()
+  @MaxLength(30)
+  @MinLength(3)
+  @ApiProperty({
+    description: &#x27;username of the user&#x27;,
+  })
+  username: string;
 
-    /**
-    * default currency of the account
-    */
-    @IsDefined()
-    @IsNotEmpty()
-    @IsEnum(Currencies, { each: true })
-    @ApiProperty({
-        description: &#x27;currency of the user account&#x27;,
-      })
-    currency: Currencies;
+  /**
+   * default currency of the account
+   */
+  @IsDefined()
+  @IsNotEmpty()
+  @IsEnum(Currencies, { each: true })
+  @ApiProperty({
+    description: &#x27;currency of the user account&#x27;,
+  })
+  currency: Currencies;
 
-    /**
+  /**
    * get user DTO constructor
    * @param properties DTO properties
    */
-    constructor(properties: any &#x3D; {}) {
-        Object.keys(properties).forEach((key: string) &#x3D;&gt; {
-            if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
-        });
-    }
-
-}</code></pre>
+  constructor(properties: any &#x3D; {}) {
+    Object.keys(properties).forEach((key: string) &#x3D;&gt; {
+      if (allowedProperties.includes(key)) this[key as keyof this] &#x3D; properties[key];
+    });
+  }
+}
+</code></pre>
     </div>
 </div>
 
