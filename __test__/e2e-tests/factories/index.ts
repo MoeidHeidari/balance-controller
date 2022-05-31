@@ -1,1 +1,1 @@
-export * from './e2e.factory'
+export * from './e2e.factory';

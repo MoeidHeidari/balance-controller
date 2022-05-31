@@ -143,13 +143,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CacheInterceptor, CacheModule, Module } from &#x27;@nestjs/common&#x27;;
-import { APP_GUARD, APP_INTERCEPTOR } from &#x27;@nestjs/core&#x27;;
+import { APP_INTERCEPTOR } from &#x27;@nestjs/core&#x27;;
 import { ConfigModule } from &#x27;@nestjs/config&#x27;;
 import { configuration } from &#x27;../config/env.objects&#x27;;
 import { validate } from &#x27;../config/env.validation&#x27;;
-
 import { LoggerInterceptor } from &#x27;../../domain/interceptors&#x27;;
-import { RolesGuard } from &#x27;../../domain/guards&#x27;;
 import * as modules from &#x27;../../domain/modules&#x27;;
 import { CommonModule } from &#x27;./common/common.module&#x27;;
 import { PrometheusModule } from &#x27;@willsoto/nestjs-prometheus&#x27;;
@@ -177,10 +175,6 @@ const modulesList &#x3D; Object.keys(modules).map(moduleIndex &#x3D;&gt; modules
     ...modulesList,
   ],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
     {
       provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor,

@@ -5,9 +5,9 @@ expandEnvVariables();
  * options enum
  */
 export enum EnvObjects {
-  TRANSACTION_COMMISSION    =   'VirtualBankOptions',
-  WIDRAW_COMMISSION         =   'VirtualBankOptions',
-  DEPOSIT_FEE_PER_MINUTE    =   'VirtualBankOptions'
+  TRANSACTION_COMMISSION = 'VirtualBankOptions',
+  WIDRAW_COMMISSION = 'VirtualBankOptions',
+  DEPOSIT_FEE_PER_MINUTE = 'VirtualBankOptions',
 }
 //===================================================================================================
 /**
@@ -34,9 +34,9 @@ export interface VirtualBankOptions {
  * @returns configuration taken from env
  */
 export const configuration = (): any => ({
-    VirtualBankOptions: {
+  VirtualBankOptions: {
     transaction_commission: process.env.TRANSACTION_COMMISSION,
     widraw_commission: process.env.WIDRAW_COMMISSION,
-    deposit_fee_per_minute: process.env.DEPOSIT_FEE_PER_MINUTE
+    deposit_fee_per_minute: process.env.DEPOSIT_FEE_PER_MINUTE,
   },
 });

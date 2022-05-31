@@ -10,10 +10,12 @@ describe('HealthController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [HealthController],
       imports: [TerminusModule, HttpModule],
-    }).setLogger(new Logger()).compile();
+    })
+      .setLogger(new Logger())
+      .compile();
 
     controller = module.get<HealthController>(HealthController);
-  })
+  });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();

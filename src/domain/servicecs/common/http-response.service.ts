@@ -4,7 +4,7 @@ import {
   HttpResponseMessages,
   HttpResponseTypes,
   HttpResponseTypesCodes,
-} from '../../enums/httpResponse'
+} from '../../enums/httpResponse';
 
 import { HttpResponse } from '../../interfaces';
 
