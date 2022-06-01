@@ -1,234 +1,73 @@
-# Grover monetary transaction
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-# Table of Contents
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-- [Grover monetary transaction](#grover-monetary-transaction)
-- [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-      - [Provided APIs](#provided-apis)
-  - [Code architecture](#code-architecture)
-  - [source code](#source-code)
-  - [Service build information](#service-build-information)
-    - [Regular user](#regular-user)
-    - [Advanced user](#advanced-user)
-  - [Deployment](#deployment)
-      - [Helm](#helm)
-      - [Kubernetes manifests](#kubernetes-manifests)
-  - [Monitoring and alerting](#monitoring-and-alerting)
-    - [Health check](#health-check)
-  - [OpenApi](#openapi)
-  - [Documentation](#documentation)
-  - [ToDo list](#todo-list)
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Overview
+## Description
 
-Grover monetary transaction provides a bunch of REST APIs to simulate a monetary transaction for the given user. It provides following list of APIs
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
----
-
-#### Provided APIs
-
-- Create new account (`/api/v1/account`)***[POST][GET][PUT][DELETE]***
-
-- Deposit money (`/api/v1/balance/deposit`)***[POST]***
-
-- Widraw money (`/api/v1/balance/widraw`)***[POST]***
-
-- Show balance(`/api/v1/balance`)***[GET]***
-
----
-
-## Code architecture
-
-Onion Architecture
+## Installation
 
 ```bash
-src
-
-├── application
-
-│ ├── controllers
-
-│ └── dtos
-
-├── domain
-
-│ ├── decorators
-
-│ ├── entities
-
-│ ├── enums
-
-│ │ └── httpResponse
-
-│ ├── exceptions
-
-│ ├── guards
-
-│ ├── helpers
-
-│ ├── interceptors
-
-│ ├── interfaces
-
-│ ├── modules
-
-│ │ └── common
-
-│ ├── pipes
-
-│ ├── repositories
-
-│ ├── seeders
-
-│ └── servicecs
-
-│ └── common
-
-└── infrastructure
-
-├── config
-
-└── modules
-
-└── common
+$ npm install
 ```
 
-Here we have three very main layers
-
-- Application
-
-in this layer we define the actual behavior of our application, thus being responsible for performing interactions among units of the domain layer.
-
-- Domain
-
-this layer represents the business and behavior objects. we define units which play the role of entities and business rules and have a direct relationship to our domain
-
-- Infrastructure
-
-this layer the boundary to whatever is external to our application: the database, email services, queue engines, etc.
-
----
-
-## source code
+## Running the app
 
 ```bash
-tar -xvf monetary-transaction.tar
+# development
+$ npm run start
 
-cd monetary-transaction
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
-## Service build information
-
-There are different stages of building the application for this service. Based on the environment you want to deploy we have different ways to build the application. following information may help with building the service.
-
-### Regular user
+## Test
 
 ```bash
-npm install
-npm run build
-npm run test:ci
-npm start:{dev || debug || prod}
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
 ```
 
-### Advanced user
+## Support
 
-```bash
-cd scripts
-bash run.sh -h
-2022.05.30.14.43
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-buildDocker] [-runDocker] [-runApp] [-runDoc] [-packageHelm]
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
+## Stay in touch
 
-This script helps you to run the application in different forms. below you can get the full list of available options.
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-Available options:
+## License
 
--h, --help              Print this help and exit
--buildDocker            Build the docker image called "grover:latest"
--runDocker              Build the docker image and run on local machine
--runApp                 Run application with npm in usual way for development
--runDoc                 Generate the code documentation
--packageHelm            makes a helm package from the helm chart.
-```
-
-## Deployment
-
-#### Helm
-
-with the following instruction you can install the helm chart on an up and running kubernetes cluster.
-
-```bash
-cd k8s
-helm install {grover-app} {app-0.1.0.tgz} --set service.type=NodePort
-```
-
-#### Kubernetes manifests
-
-Alternativelly you can deploy the application on an up an running kubernetes cluster using provided config files.
-
-```bash
-cd k8s/configFiles
-
-kubectl apply -f grover-namespace.yaml, grover-configmap.yaml, grover-deployment.yaml, grover-service.yaml
-```
-
-it should give you following output
-
-```bash
-namespace/grover created
-
-configmap/grover-config created
-
-deployment.apps/grover created
-
-service/grover created
-```
-
-## Monitoring and alerting
-
-### Health check
-
-by calling the following endpoint you can make sure that the application is running and listening to your desired port
-
-`http://localhost:{port_number}/health`
-
-most probably you will get a result back as follow
-
-> **Example**
-
-> {"status":"ok","info":{"alive":{"status":"up"}},"error":{},"details":{"alive":{"status":"up"}}}
-
-mertics
-
-to get the default metrics of the application you can use the following endpoint
-
-`http://localhost:{port_number}/metrics`
-
-## OpenApi
-
-by calling the following endpoint you can see the Swagger OpenApi documentation and explore all the available apis and schemas.
-
-`http://localhost:{port_number}/api`
-
-## Documentation
-
-By running following comman you can generate the full code documentation (Compodoc) and get access to it through port `7000`
-
-```bash
-npm run doc
-```
-
-http://localhost:7000
-
-## ToDo list
-
-- [ ] add moneytion from one account to another account
-
-- [ ] apply commision to money transaction
-
-- [ ] apply commision to widraw money
-
-- [ ] apply deposit fee per minute to the balance
-
-- [ ] add counter metric to the apis
+Nest is [MIT licensed](LICENSE).

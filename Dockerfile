@@ -27,14 +27,13 @@ RUN PATH="$(npm bin)":${PATH} \
   && npm install --frozen-lockfile  --production
 
 # Serve
-FROM environment AS production
+FROM environment AS prod
 
 
 COPY ["./scripts/docker-entrypoint.sh", "/usr/local/bin/entrypoint"]
 COPY ["./scripts/bootstrap.sh", "/usr/local/bin/bootstrap"]
 COPY --from=builder "${MS_HOME}/node_modules" "${MS_HOME}/node_modules"
 COPY --from=builder "${MS_HOME}/dist" "${MS_HOME}/dist"
-COPY --from=builder "${MS_HOME}/.env*" "${MS_HOME}/"
 
 RUN  \
   apk --update add --no-cache tini bash \
