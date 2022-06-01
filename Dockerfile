@@ -20,11 +20,12 @@ COPY . "${MS_HOME}"
 
 
 RUN PATH="$(npm bin)":${PATH} \
-  && npm install \
+  && npm ci \
   && npm run test:ci \
+  && npm run test:e2e \
   && npm run-script build \
   # Clean up dependencies for production image
-  && npm install --frozen-lockfile  --production
+  && npm install --frozen-lockfile  --production && npm cache clean --force
 
 # Serve
 FROM environment AS prod
@@ -49,6 +50,8 @@ RUN  \
     "/usr/local/bin/npm" \
     "/usr/local/bin/docker-entrypoint.sh"
 USER "${USER_NAME}"
+
+
 EXPOSE 8085
 
 ENTRYPOINT [ "/sbin/tini", "--", "/usr/local/bin/entrypoint" ]

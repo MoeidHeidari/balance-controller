@@ -95,3 +95,11 @@ export function naiveRound(num: number, decimalPlaces = 2) {
     const p = Math.pow(10, decimalPlaces);
     return Math.round(num * p) / p;
 }
+//====================================================================================================
+export function getRandomCurrency<T>(anEnum: T): T[keyof T] {
+    const enumValues = Object.keys(anEnum)
+        .map((n) => Number.parseInt(n))
+        .filter((n) => !Number.isNaN(n)) as unknown as T[keyof T][];
+    const randomIndex = Math.floor(Math.random() * enumValues.length);
+    return enumValues[randomIndex];
+}

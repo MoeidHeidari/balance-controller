@@ -33,7 +33,11 @@ spec:
         name: grover
         ports:
         - containerPort: 8077
-        resources: 
+        resources:
+          requests:
+            memory: "400Mi"
+        limits:
+          memory: "500Mi" 
       restartPolicy: Always
       serviceAccountName: ""
 status: {}

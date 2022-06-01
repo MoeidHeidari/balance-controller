@@ -1,13 +1,6 @@
 import faker, { datatype } from 'faker';
+import { getRandomCurrency } from '../../../src/common/helpers';
 import { Currencies } from '../../common/enums/currencies.enum';
-////////////////////////////////////////e2e test cases////////////////////////////////////////////////////////////
-function getRandomCurrency<T>(anEnum: T): T[keyof T] {
-    const enumValues = Object.keys(anEnum)
-        .map((n) => Number.parseInt(n))
-        .filter((n) => !Number.isNaN(n)) as unknown as T[keyof T][];
-    const randomIndex = Math.floor(Math.random() * enumValues.length);
-    return enumValues[randomIndex];
-}
 /**
  * checks if service can create an account with valid data
  */
