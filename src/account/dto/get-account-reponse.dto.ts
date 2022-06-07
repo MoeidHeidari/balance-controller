@@ -1,3 +1,4 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 import {
     IsDate,
@@ -25,12 +26,14 @@ const allowedProperties = [
     'token',
     'balance',
 ];
+@ObjectType()
 export class GetUserAccountResponseDTO {
     /**
      * id of the user
      */
     @IsDefined()
     @IsString()
+    @Field()
     @IsNotEmpty()
     @ApiProperty({
         description: 'id of the user',
@@ -44,6 +47,7 @@ export class GetUserAccountResponseDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @Field()
     @ApiProperty({
         description: 'name of the user',
     })
@@ -53,6 +57,7 @@ export class GetUserAccountResponseDTO {
      */
     @IsDefined()
     @IsString()
+    @Field()
     @MaxLength(30)
     @MinLength(3)
     @ApiProperty({
@@ -65,6 +70,7 @@ export class GetUserAccountResponseDTO {
     @IsDefined()
     @IsString()
     @MaxLength(30)
+    @Field()
     @MinLength(3)
     @ApiProperty({
         description: 'username of the user',
@@ -74,6 +80,7 @@ export class GetUserAccountResponseDTO {
      * default currency of the account
      */
     @IsDefined()
+    @Field()
     @IsNotEmpty()
     @IsEnum(Currencies, { each: true })
     @ApiProperty({
@@ -86,6 +93,7 @@ export class GetUserAccountResponseDTO {
      */
     @IsDefined()
     @IsDate()
+    @Field()
     @IsNotEmpty()
     @ApiProperty({
         description: 'acount created at',
@@ -97,6 +105,7 @@ export class GetUserAccountResponseDTO {
      */
     @IsDefined()
     @IsDate()
+    @Field()
     @IsNotEmpty()
     @ApiProperty({
         description: 'account updated at',
@@ -107,6 +116,7 @@ export class GetUserAccountResponseDTO {
      * balance of the aaount
      */
     @IsDefined()
+    @Field()
     @IsNumber()
     @IsNotEmpty()
     @ApiProperty({

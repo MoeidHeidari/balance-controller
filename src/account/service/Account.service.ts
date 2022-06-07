@@ -3,6 +3,7 @@ import { Mutex } from 'async-mutex';
 import { take } from 'rxjs';
 import { naiveRound } from '../../common/helpers';
 import {
+    CreateAccountReposnseDto,
     CreateAccountRequestDTO,
     GetUserAccountRequestDTO,
     GetUserAccountResponseDTO,
@@ -29,7 +30,7 @@ export class AccountService {
      * @param record Account entity
      * @returns Promise<Observable<AccountEntity | AccountEntity[]>>
      */
-    async createNewAccount(record: CreateAccountRequestDTO) {
+    async createNewAccount(record: CreateAccountRequestDTO):Promise<CreateAccountReposnseDto> {
         const account: AccountEntity = {
             username: record.username,
             name: record.name,
@@ -102,7 +103,7 @@ export class AccountService {
         });
     }
     //====================================================================================================================================
-    async depositModeny(id: string, amount: DepositMoneyRequestDTO) {
+    async depositModeny(id: string, amount: DepositMoneyRequestDTO):Promise<GetUserAccountResponseDTO> {
         const release = await this.mutex.acquire();
         try {
             return new Promise(async (resolve) => {
@@ -123,7 +124,7 @@ export class AccountService {
         }
     }
     //====================================================================================================================================
-    async widrawMoney(id: string, amount: DepositMoneyRequestDTO) {
+    async widrawMoney(id: string, amount: DepositMoneyRequestDTO):Promise<GetUserAccountResponseDTO> {
         const release = await this.mutex.acquire();
         try {
             return new Promise(async (resolve, rejects) => {
@@ -152,5 +153,15 @@ export class AccountService {
         } finally {
             release();
         }
+    }
+    //===============================================================================================
+    async getAllAccounts():Promise<AccountEntity[]>{
+        return new Promise(async (resolve) => {
+            (await this.account_repository.getAll())
+                .pipe(take(1))
+                .subscribe((data: any) => {
+                    resolve(data);
+                });
+        });
     }
 }

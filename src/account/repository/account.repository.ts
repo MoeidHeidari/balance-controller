@@ -1,6 +1,6 @@
 import { InMemoryDBService } from '@nestjs-addons/in-memory-db';
 import { Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { AccountEntity } from '../entity';
 
 /**
@@ -42,7 +42,7 @@ export class AccountRepository {
      * @returns Promise<Observable<AccountEntity | AccountEntity[]>>
      */
     async get(
-        id: string
+        id?: string
     ): Promise<Observable<AccountEntity | AccountEntity[]>> {
         return this.accountService.getAsync(id);
     }
@@ -56,4 +56,7 @@ export class AccountRepository {
         return this.accountService.updateAsync(record);
     }
     //=======================================================================================================
+    async getAll(): Promise<Observable<AccountEntity | AccountEntity[]>>{
+        return this.accountService.getAllAsync();
+    }
 }

@@ -7,12 +7,15 @@ import { LoggerInterceptor } from '../logger';
 import { AppController } from './controller/app.controller';
 import { AppService } from './service/app.service';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
     imports: [
+        GraphQLModule.forRoot<ApolloDriverConfig>({driver:ApolloDriver,autoSchemaFile:join(process.cwd(),'src/schema.gql')}),
         AccountModule,
         PrometheusModule.register(),
-        CacheModule.register(),
         ConfigModule.forRoot({
             load: [configuration],
             validate,
@@ -24,10 +27,6 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
     controllers: [AppController],
     providers: [
         AppService,
-        {
-            provide: APP_INTERCEPTOR,
-            useClass: CacheInterceptor,
-        },
         {
             provide: APP_INTERCEPTOR,
             useClass: LoggerInterceptor,

@@ -1,3 +1,4 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDefined, IsNotEmpty, IsString } from 'class-validator';
 /**
@@ -7,12 +8,14 @@ const allowedProperties = ['acccount_token', 'id'];
 /**
  * CreateAccountReposnseDto
  */
+@ObjectType()
 export class CreateAccountReposnseDto {
     /**
      * id of the user
      */
     @IsDefined()
     @IsString()
+    @Field()
     @IsNotEmpty()
     @ApiProperty({
         description: 'id of the user',

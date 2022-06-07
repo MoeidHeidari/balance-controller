@@ -1,3 +1,4 @@
+import { Field, InputType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 import {
     IsDefined,
@@ -13,6 +14,7 @@ import { Currencies } from '../../common/enums';
  * List of allowed properties in this DTO
  */
 const allowedProperties = ['name', 'familty', 'username', 'currency'];
+@InputType()
 export class CreateAccountRequestDTO {
     /**
      * name of the user
@@ -21,6 +23,7 @@ export class CreateAccountRequestDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @Field()
     @ApiProperty({
         description: 'name of the user',
     })
@@ -32,6 +35,7 @@ export class CreateAccountRequestDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @Field()
     @ApiProperty({
         description: 'family of the user',
     })
@@ -42,6 +46,7 @@ export class CreateAccountRequestDTO {
     @IsDefined()
     @IsString()
     @MaxLength(30)
+    @Field()
     @MinLength(3)
     @ApiProperty({
         description: 'username of the user',
@@ -53,6 +58,7 @@ export class CreateAccountRequestDTO {
      */
     @IsDefined()
     @IsNotEmpty()
+    @Field()
     @IsEnum(Currencies, { each: true })
     @ApiProperty({
         description: 'currency of the user account',

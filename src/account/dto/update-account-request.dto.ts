@@ -1,3 +1,4 @@
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 import {
     IsDefined,
@@ -21,6 +22,7 @@ const allowedProperties = [
     'email',
     'currency',
 ];
+@InputType()
 export class UpdateAccountRequestDTO {
     /**
      * id of the user
@@ -28,6 +30,7 @@ export class UpdateAccountRequestDTO {
     @IsDefined()
     @IsString()
     @IsNotEmpty()
+    @Field()
     @ApiProperty({
         description: 'id of the user',
     })
@@ -40,6 +43,7 @@ export class UpdateAccountRequestDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @Field()
     @ApiProperty({
         description: 'name of the user',
     })
@@ -51,6 +55,7 @@ export class UpdateAccountRequestDTO {
     @IsString()
     @MaxLength(30)
     @MinLength(3)
+    @Field()
     @ApiProperty({
         description: 'family of the user',
     })
@@ -61,6 +66,7 @@ export class UpdateAccountRequestDTO {
      */
     @IsOptional()
     @IsNotEmpty()
+    @Field()
     @IsEnum(Currencies, { each: true })
     @ApiProperty({
         description: 'currency of the user acount balance',

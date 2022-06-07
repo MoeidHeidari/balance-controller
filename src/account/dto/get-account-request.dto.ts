@@ -1,3 +1,4 @@
+import { Field, InputType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDefined, IsNotEmpty, IsString } from 'class-validator';
 
@@ -5,12 +6,14 @@ import { IsDefined, IsNotEmpty, IsString } from 'class-validator';
  * List of allowed properties in this DTO
  */
 const allowedProperties = ['id'];
+@InputType()
 export class GetUserAccountRequestDTO {
     /**
      * id of the user
      */
     @IsDefined()
     @IsString()
+    @Field()
     @IsNotEmpty()
     @ApiProperty({
         description: 'id of the user',
